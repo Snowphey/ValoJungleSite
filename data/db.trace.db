@@ -1,0 +1,12 @@
+2023-10-18 16:37:34 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO UTILISATEUR ([*]1, ""$2y$10$x0ZUVEFPNwhC1otl3lHcJ.bcWi4KdMrRTQqOSoHWlGBoTj/eWBiXe"", ""admin"", ""admin"")"; expected "identifier"; SQL statement:
+INSERT INTO UTILISATEUR (1, "$2y$10$x0ZUVEFPNwhC1otl3lHcJ.bcWi4KdMrRTQqOSoHWlGBoTj/eWBiXe", "admin", "admin") [42001-214]
+2023-10-18 16:38:01 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO UTILISATEUR ([*]1, '$2y$10$x0ZUVEFPNwhC1otl3lHcJ.bcWi4KdMrRTQqOSoHWlGBoTj/eWBiXe', 'admin', 'admin')"; expected "identifier"; SQL statement:
+INSERT INTO UTILISATEUR (1, '$2y$10$x0ZUVEFPNwhC1otl3lHcJ.bcWi4KdMrRTQqOSoHWlGBoTj/eWBiXe', 'admin', 'admin') [42001-214]
+2023-10-18 16:38:13 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO UTILISATEUR ([*]'$2y$10$x0ZUVEFPNwhC1otl3lHcJ.bcWi4KdMrRTQqOSoHWlGBoTj/eWBiXe', 'admin', 'admin')"; expected "identifier"; SQL statement:
+INSERT INTO UTILISATEUR ('$2y$10$x0ZUVEFPNwhC1otl3lHcJ.bcWi4KdMrRTQqOSoHWlGBoTj/eWBiXe', 'admin', 'admin') [42001-214]
+2023-10-18 17:00:40 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO UTILISATEUR[*]"; expected "., (, OVERRIDING USER VALUE, OVERRIDING SYSTEM VALUE, DIRECT, SORTED, DEFAULT VALUES, VALUES, SET, WITH, (, SELECT, TABLE, VALUES"; SQL statement:
+INSERT INTO UTILISATEUR [42001-214]
