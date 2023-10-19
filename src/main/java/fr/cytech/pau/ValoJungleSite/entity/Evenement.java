@@ -1,30 +1,35 @@
 package fr.cytech.pau.ValoJungleSite.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
-import java.sql.Date;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Evenement {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int nbJoueurMin;
+
     private int nbJoueurMax;
-    private Date dateHeureRDV;
-    private String nom;
-    private String lienGIF;
+
+    private LocalDateTime dateHeureRDV;
+
+    @ManyToOne
     private EvenementType type;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany
+    private List<Joueur> participants;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getNbJoueurMin() {
@@ -43,28 +48,12 @@ public class Evenement {
         this.nbJoueurMax = nbJoueurMax;
     }
 
-    public Date getDateHeureRDV() {
+    public LocalDateTime getDateHeureRDV() {
         return dateHeureRDV;
     }
 
-    public void setDateHeureRDV(Date dateHeureRDV) {
+    public void setDateHeureRDV(LocalDateTime dateHeureRDV) {
         this.dateHeureRDV = dateHeureRDV;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getLienGIF() {
-        return lienGIF;
-    }
-
-    public void setLienGIF(String lienGIF) {
-        this.lienGIF = lienGIF;
     }
 
     public EvenementType getType() {
@@ -75,7 +64,11 @@ public class Evenement {
         this.type = type;
     }
 
-    @OneToMany
-    Set<Joueur> participant;
+    public List<Joueur> getParticipants() {
+        return participants;
+    }
 
+    public void setParticipants(List<Joueur> participants) {
+        this.participants = participants;
+    }
 }
