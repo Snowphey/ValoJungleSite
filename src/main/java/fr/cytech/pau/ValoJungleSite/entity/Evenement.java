@@ -18,6 +18,8 @@ public class Evenement {
 
     private LocalDateTime dateHeureRDV;
 
+    private boolean inscriptionsOuvertes;
+
     @ManyToOne
     private EvenementType type;
 
@@ -54,6 +56,14 @@ public class Evenement {
 
     public void setDateHeureRDV(LocalDateTime dateHeureRDV) {
         this.dateHeureRDV = dateHeureRDV;
+    }
+
+    public boolean isInscriptionsOuvertes() {
+        return inscriptionsOuvertes;
+    }
+
+    public void setInscriptionsOuvertes(boolean inscriptionsOuvertes) {
+        this.inscriptionsOuvertes = inscriptionsOuvertes;
     }
 
     public EvenementType getType() {
