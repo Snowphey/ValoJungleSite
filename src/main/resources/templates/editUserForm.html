@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modification d'un utilisateur - Valo Jungle Site</title>
+</head>
+<body>
+  <form method="POST">
+    <label>
+      Nom d'utilisateur :
+      <input type="text" name="username" th:value="${utilisateur.username}" required>
+    </label>
+
+    <label>
+      Mot de passe :
+      <input type="password" name="password">
+    </label>
+
+    <label>
+      Rôle :
+      <select name="role" th:value="${utilisateur.role}" required>
+        <option value="admin">Administrateur</option>
+        <option value="player">Joueur</option>
+      </select>
+    </label>
+
+    <button type="submit">Enregistrer</button>
+  </form>
+</body>
+</html>

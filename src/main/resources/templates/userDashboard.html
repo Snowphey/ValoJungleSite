@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des utilisateurs - Valo Jungle Site</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom d'utilisateur</th>
+                <th>Mot de passe</th>
+                <th>Rôle</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="utilisateur: ${utilisateurs}">
+                <td th:text="${utilisateur.id}"></td>
+                <td th:text="${utilisateur.username}"></td>
+                <td th:text="${utilisateur.password}"></td>
+                <td th:text="${utilisateur.role}"></td>
+                <td>
+                    <a th:href="@{/admin/user-dashboard/edit-user/{id}(id=${utilisateur.id})}">
+                        Éditer
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a href="/admin/user-dashboard/new-user">Créer un nouvel utilisateur</a>
+</body>
+</html>
