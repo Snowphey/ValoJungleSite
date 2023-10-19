@@ -4,6 +4,7 @@ package fr.cytech.pau.ValoJungleSite.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.sql.Date;
 import java.util.Set;
@@ -15,9 +16,7 @@ public class Evenement {
     private int nbJoueurMin;
     private int nbJoueurMax;
     private Date dateHeureRDV;
-    private String nom;
-    private String lienGIF;
-    private EvenementType type;
+    private boolean inscriptionsOuvertes;
 
     public void setId(Long id) {
         this.id = id;
@@ -51,31 +50,18 @@ public class Evenement {
         this.dateHeureRDV = dateHeureRDV;
     }
 
-    public String getNom() {
-        return nom;
+    public boolean isInscriptionsOuvertes() {
+        return inscriptionsOuvertes;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getLienGIF() {
-        return lienGIF;
-    }
-
-    public void setLienGIF(String lienGIF) {
-        this.lienGIF = lienGIF;
-    }
-
-    public EvenementType getType() {
-        return type;
-    }
-
-    public void setType(EvenementType type) {
-        this.type = type;
+    public void setInscriptionsOuvertes(boolean inscriptionsOuvertes) {
+        this.inscriptionsOuvertes = inscriptionsOuvertes;
     }
 
     @OneToMany
     Set<Joueur> participant;
+
+    @OneToOne
+    private EvenementType evenementType;
 
 }
