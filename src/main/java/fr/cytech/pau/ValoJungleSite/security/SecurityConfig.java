@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,8 +21,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
-
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -40,13 +40,8 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
         ).formLogin(Customizer.withDefaults());
 
-        http.csrf((csrf) ->
-                csrf.ignoringRequestMatchers(
-                        new AntPathRequestMatcher("/h2-console/**")
-                ).csrfTokenRepository(
-                        CookieCsrfTokenRepository.withHttpOnlyFalse()
-                )
-        );
+        http.csrf(AbstractHttpConfigurer::disable);
+
         http.headers((headers) -> headers
                 .frameOptions(
                         HeadersConfigurer.FrameOptionsConfig::disable
