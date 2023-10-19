@@ -18,13 +18,72 @@
 
     <label>
       Rôle :
-      <select name="role" th:value="${utilisateur.role}" required>
-        <option value="admin">Administrateur</option>
-        <option value="player">Joueur</option>
+      <select id="roleSelect" name="role" required>
+        <option value="admin" th:selected="${utilisateur.role.equals('admin')}">Administrateur</option>
+        <option value="player" th:selected="${utilisateur.role.equals('player')}">Joueur</option>
       </select>
     </label>
 
+    <div id="adminFields" style="display:none">
+      <!-- Champs additionnels pour l'organisateur -->
+      <label>
+        Nom d'utilisateur Discord :
+        <input type="text" name="discordUsername" th:value="${utilisateur.organisateur?.discordUsername}">
+      </label>
+      <label>
+        Adresse email :
+        <input type="email" name="email" th:value="${utilisateur.organisateur?.email}">
+      </label>
+    </div>
+
+    <div id="playerFields" style="display:none">
+      <!-- Champs additionnels pour le joueur -->
+      <label>
+        Nom :
+        <input type="text" name="nom" th:value="${utilisateur.joueur?.nom}">
+      </label>
+      <label>
+        Prénom :
+        <input type="text" name="prenom" th:value="${utilisateur.joueur?.prenom}">
+      </label>
+      <label>
+        Pseudonyme :
+        <input type="text" name="pseudo" th:value="${utilisateur.joueur?.pseudo}">
+      </label>
+    </div>
+
     <button type="submit">Enregistrer</button>
   </form>
+
+  <script>
+    const roleSelect = document.getElementById('roleSelect');
+    const adminFields = document.getElementById('adminFields');
+    const playerFields = document.getElementById('playerFields');
+
+    // Vérifier la valeur initiale de la liste déroulante "Rôle"
+    if (roleSelect.value === 'admin') {
+      adminFields.style.display = 'block';
+      playerFields.style.display = 'none';
+    } else if (roleSelect.value === 'player') {
+      adminFields.style.display = 'none';
+      playerFields.style.display = 'block';
+    } else {
+      adminFields.style.display = 'none';
+      playerFields.style.display = 'none';
+    }
+
+    roleSelect.addEventListener('change', function () {
+      if (roleSelect.value === 'admin') {
+        adminFields.style.display = 'block';
+        playerFields.style.display = 'none';
+      } else if (roleSelect.value === 'player') {
+        adminFields.style.display = 'none';
+        playerFields.style.display = 'block';
+      } else {
+        adminFields.style.display = 'none';
+        playerFields.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>

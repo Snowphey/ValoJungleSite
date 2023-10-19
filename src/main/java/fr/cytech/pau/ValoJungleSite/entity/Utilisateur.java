@@ -16,10 +16,10 @@ public class Utilisateur {
 
     private String role;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private Joueur joueur;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private Organisateur organisateur;
 
     public Long getId() {
