@@ -16,10 +16,10 @@ public class Utilisateur {
 
     private String role;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private Joueur joueur;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private Organisateur organisateur;
 
     public Long getId() {

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des modes de jeu - Valo Jungle Site</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Lien GIF</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="modeDeJeu: ${modesDeJeu}">
+            <td th:text="${modeDeJeu.id}"></td>
+            <td th:text="${modeDeJeu.nom}"></td>
+            <td th:text="${modeDeJeu.description}"></td>
+            <td th:text="${modeDeJeu.lienGIF}"></td>
+            <td>
+                <a th:href="@{/admin/gamemode-dashboard/edit-gamemode/{id}(id=${modeDeJeu.id})}">
+                    Éditer
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/gamemode-dashboard/delete-gamemode/{id}(id=${modeDeJeu.id})}">
+                    Supprimer
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a href="/admin/gamemode-dashboard/new-gamemode">Créer un nouveau mode de jeu</a>
+</body>
+</html>

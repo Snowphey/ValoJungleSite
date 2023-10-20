@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des parties - Valo Jungle Site</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de joueurs minimum</th>
+            <th>Nombre de joueurs maximum</th>
+            <th>Date et heure de rendez-vous</th>
+            <th>Inscriptions ouvertes ?</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="partie: ${parties}">
+            <td th:text="${partie.id}"></td>
+            <td th:text="${partie.nbJoueursMin}"></td>
+            <td th:text="${partie.nbJoueursMax}"></td>
+            <td th:text="${partie.dateHeureRDV}"></td>
+            <td th:text="${partie.inscriptionsOuvertes}"></td>
+            <td>
+                <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}">
+                    Éditer
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}">
+                    Supprimer
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a href="/admin/game-dashboard/new-game">Créer une nouvelle partie</a>
+</body>
+</html>

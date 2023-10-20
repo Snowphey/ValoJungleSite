@@ -32,6 +32,8 @@ public class SecurityConfig {
                         new AntPathRequestMatcher("/**")
                 ).permitAll()
                 */
+
+                ///*
                 .requestMatchers(
                         new AntPathRequestMatcher("/h2-console/**")
                 ).permitAll()
@@ -44,6 +46,7 @@ public class SecurityConfig {
                 .requestMatchers(
                         new AntPathRequestMatcher("/player/**")
                 ).hasRole("player")
+                //*/
                 .anyRequest().authenticated()
         ).formLogin(Customizer.withDefaults());
 

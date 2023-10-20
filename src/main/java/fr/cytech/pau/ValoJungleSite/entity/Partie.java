@@ -12,13 +12,13 @@ public class Partie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int nbJoueurMin;
+    private int nbJoueursMin;
 
-    private int nbJoueurMax;
+    private int nbJoueursMax;
 
     private LocalDateTime dateHeureRDV;
 
-    private boolean inscriptionsOuvertes;
+    private boolean inscriptionsOuvertes = true;
 
     @ManyToOne
     private ModeDeJeu modeDeJeu;
@@ -34,20 +34,20 @@ public class Partie {
         this.id = id;
     }
 
-    public int getNbJoueurMin() {
-        return nbJoueurMin;
+    public int getNbJoueursMin() {
+        return nbJoueursMin;
     }
 
-    public void setNbJoueurMin(int nbJoueurMin) {
-        this.nbJoueurMin = nbJoueurMin;
+    public void setNbJoueursMin(int nbJoueursMin) {
+        this.nbJoueursMin = nbJoueursMin;
     }
 
-    public int getNbJoueurMax() {
-        return nbJoueurMax;
+    public int getNbJoueursMax() {
+        return nbJoueursMax;
     }
 
-    public void setNbJoueurMax(int nbJoueurMax) {
-        this.nbJoueurMax = nbJoueurMax;
+    public void setNbJoueursMax(int nbJoueursMax) {
+        this.nbJoueursMax = nbJoueursMax;
     }
 
     public LocalDateTime getDateHeureRDV() {
@@ -70,8 +70,8 @@ public class Partie {
         return modeDeJeu;
     }
 
-    public void setModeDeJeu(ModeDeJeu type) {
-        this.modeDeJeu = type;
+    public void setModeDeJeu(ModeDeJeu modeDeJeu) {
+        this.modeDeJeu = modeDeJeu;
     }
 
     public List<Joueur> getParticipants() {
