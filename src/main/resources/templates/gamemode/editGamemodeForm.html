@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modification d'un mode de jeu - Valo Jungle Site</title>
+</head>
+    <body>
+    <form method="POST">
+        <label>
+            Nom :
+            <input type="text" name="nom" th:value="${modeDeJeu.nom}" required>
+        </label>
+
+        <label>
+            Description
+            <input type="text" name="description" th:value="${modeDeJeu.description}" required>
+        </label>
+
+        <label>
+            Lien GIF :
+            <input type="text" name="lienGIF" th:value="${modeDeJeu.lienGIF}" required>
+        </label>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+</body>
+</html>

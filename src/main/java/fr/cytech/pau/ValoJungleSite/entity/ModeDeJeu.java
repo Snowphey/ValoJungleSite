@@ -16,7 +16,7 @@ public class ModeDeJeu {
 
     private String lienGIF;
 
-    @OneToMany
+    @OneToMany(mappedBy = "modeDeJeu", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Partie> parties;
 
     public Long getId() {

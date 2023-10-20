@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Création d'une partie - Valo Jungle Site</title>
+</head>
+<body>
+    <form method="POST">
+        <label>
+            Nombre de joueurs minimum :
+            <input type="number" name="nbJoueursMin" min="1" required>
+        </label>
+
+        <label>
+            Nombre de joueurs maximum :
+            <input type="number" name="nbJoueursMax" min="1" disabled required>
+        </label>
+
+        <label>
+            Date et heure de rendez-vous :
+            <input type="datetime-local" name="dateHeureRDV" required>
+        </label>
+
+        <label>
+            Mode de jeu :
+            <select name="modeDeJeu" required>
+                <option th:each="mode : ${modesDeJeu}" th:value="${mode.id}" th:text="${mode.nom}"></option>
+            </select>
+        </label>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+
+    <script>
+        const nbJoueursMinInput = document.querySelector('input[name="nbJoueursMin"]');
+        const nbJoueursMaxInput = document.querySelector('input[name="nbJoueursMax"]');
+
+        // Vérification côté client : Le nombre de joueurs maximum doit être supérieur ou égal au nombre de joueurs minimum
+        nbJoueursMaxInput.addEventListener('change', function () {
+            if (parseInt(nbJoueursMaxInput.value) < parseInt(nbJoueursMinInput.value)) {
+                nbJoueursMaxInput.value = nbJoueursMinInput.value;
+            }
+        });
+
+        nbJoueursMinInput.addEventListener('input', function () {
+            nbJoueursMaxInput.min = nbJoueursMinInput.value;
+            nbJoueursMaxInput.disabled = !nbJoueursMinInput.value;
+        });
+    </script>
+</body>
+</html>
