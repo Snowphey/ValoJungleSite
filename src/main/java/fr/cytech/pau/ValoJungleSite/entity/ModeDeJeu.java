@@ -2,11 +2,10 @@ package fr.cytech.pau.ValoJungleSite.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.util.List;
 
 @Entity
-public class EvenementType {
+public class ModeDeJeu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +17,7 @@ public class EvenementType {
     private String lienGIF;
 
     @OneToMany
-    private List<Evenement> evenements;
+    private List<Partie> parties;
 
     public Long getId() {
         return id;
@@ -52,11 +51,11 @@ public class EvenementType {
         this.lienGIF = lienGIF;
     }
 
-    public List<Evenement> getEvenements() {
-        return evenements;
+    public List<Partie> getParties() {
+        return parties;
     }
 
-    public void setEvenements(List<Evenement> evenements) {
-        this.evenements = evenements;
+    public void setParties(List<Partie> parties) {
+        this.parties = parties;
     }
 }

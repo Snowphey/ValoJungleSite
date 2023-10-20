@@ -3,7 +3,6 @@ package fr.cytech.pau.ValoJungleSite.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Organisateur {
@@ -19,7 +18,7 @@ public class Organisateur {
     private Utilisateur utilisateur;
 
     @OneToMany
-    private List<Evenement> evenementsCrees;
+    private List<Partie> partiesCreees;
 
     public Long getId() {
         return id;
@@ -53,11 +52,11 @@ public class Organisateur {
         this.utilisateur = utilisateur;
     }
 
-    public List<Evenement> getEvenementsCrees() {
-        return evenementsCrees;
+    public List<Partie> getPartiesCreees() {
+        return partiesCreees;
     }
 
-    public void setEvenementsCrees(List<Evenement> evenementsCrees) {
-        this.evenementsCrees = evenementsCrees;
+    public void setPartiesCreees(List<Partie> evenementsCrees) {
+        this.partiesCreees = evenementsCrees;
     }
 }

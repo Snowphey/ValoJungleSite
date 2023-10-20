@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class Evenement {
+public class Partie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class Evenement {
     private boolean inscriptionsOuvertes;
 
     @ManyToOne
-    private EvenementType type;
+    private ModeDeJeu modeDeJeu;
 
     @OneToMany
     private List<Joueur> participants;
@@ -66,12 +66,12 @@ public class Evenement {
         this.inscriptionsOuvertes = inscriptionsOuvertes;
     }
 
-    public EvenementType getType() {
-        return type;
+    public ModeDeJeu getModeDeJeu() {
+        return modeDeJeu;
     }
 
-    public void setType(EvenementType type) {
-        this.type = type;
+    public void setModeDeJeu(ModeDeJeu type) {
+        this.modeDeJeu = type;
     }
 
     public List<Joueur> getParticipants() {

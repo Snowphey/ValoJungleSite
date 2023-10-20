@@ -3,7 +3,6 @@ package fr.cytech.pau.ValoJungleSite.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 
@@ -27,7 +26,7 @@ public class Joueur {
     private Guilde guilde;
 
     @OneToMany
-    private List<Evenement> evenements;
+    private List<Partie> parties;
 
     public Long getId() {
         return id;
@@ -85,11 +84,11 @@ public class Joueur {
         this.guilde = guilde;
     }
 
-    public List<Evenement> getEvenements() {
-        return evenements;
+    public List<Partie> getParties() {
+        return parties;
     }
 
-    public void setEvenements(List<Evenement> evenements) {
-        this.evenements = evenements;
+    public void setParties(List<Partie> parties) {
+        this.parties = parties;
     }
 }
