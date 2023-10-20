@@ -32,10 +32,6 @@ public class MainController {
 
         model.addAttribute("loggedIn", !principal.equals("anonymousUser"));
 
-        System.out.println(!principal.equals("anonymousUser"));
-
-        System.out.println(model.getAttribute("loggedIn"));
-
         return "home";
     }
 

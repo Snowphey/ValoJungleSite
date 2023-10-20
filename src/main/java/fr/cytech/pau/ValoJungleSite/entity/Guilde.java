@@ -70,6 +70,10 @@ public class Guilde {
         this.membres.add(membre);
     }
 
+    public void removeMembre(Joueur membre) {
+        this.membres.remove(membre);
+    }
+
     public void setMembres(List<Joueur> membres) {
         this.membres = membres;
     }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guilde - Valo Jungle Site</title>
+</head>
+<body>
+  <div th:if="${guilde} != null">
+    Votre guilde :
+    <div th:text="|[${guilde.tag}] ${guilde.nom}|"></div>
+
+    Liste des membres :
+    <ul>
+      <li th:each="membre : ${guilde.membres}">
+        <span th:style="${membre.estChef} ? 'color: red'" th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
+      </li>
+    </ul>
+
+    <div th:if="${estChef}">
+      <a th:href="@{/player/edit-guild/{id}(id=${guilde.id})}">Modifier votre guilde</a>
+    </div>
+
+    <a href="/player/leave-guild" th:text="${estChef ? 'Dissoudre votre guilde' : 'Quitter votre guilde'}"></a>
+  </div>
+  <div th:unless="${guilde} != null">
+    Vous n'avez encore créé/rejoint aucune guilde !
+
+    <a href="/player/new-guild">Créer une guilde</a>
+    <a href="/player/join-guild">Rejoindre une guilde</a>
+  </div>
+</body>
+</html>

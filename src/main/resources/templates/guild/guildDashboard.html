@@ -13,6 +13,7 @@
             <th>Tag</th>
             <th>Lien emblème</th>
             <th>Couleur</th>
+            <th>Chef</th>
             <th>Modifier</th>
             <th>Supprimer</th>
         </tr>
@@ -25,12 +26,19 @@
             <td th:text="${guilde.lienEmbleme}"></td>
             <td th:style="|background-color: ${guilde.couleurHex}|"></td>
             <td>
-                <a th:href="@{/player/guild-dashboard/edit-guild/{id}(id=${guilde.id})}">
+                <span th:each="membre : ${guilde.membres}">
+                    <span th:if="${membre.estChef}">
+                        <span th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
+                    </span>
+                </span>
+            </td>
+            <td>
+                <a th:href="@{/admin/guild-dashboard/edit-guild/{id}(id=${guilde.id})}">
                     Éditer
                 </a>
             </td>
             <td>
-                <a th:href="@{/player/guild-dashboard/delete-guild/{id}(id=${guilde.id})}">
+                <a th:href="@{/admin/guild-dashboard/delete-guild/{id}(id=${guilde.id})}">
                     Supprimer
                 </a>
             </td>
@@ -39,6 +47,6 @@
     </table>
 
 
-    <a href="/player/guild-dashboard/new-guild">Créer une nouvelle guilde</a>
+    <a href="/admin/guild-dashboard/new-guild">Créer une nouvelle guilde</a>
     </body>
 </html>

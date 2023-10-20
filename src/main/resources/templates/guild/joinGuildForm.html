@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejoindre une guilde - Valo Jungle Site</title>
+</head>
+<body>
+<form method="POST">
+    <label>
+        Guilde :
+        <select name="guilde" required>
+            <option th:each="guilde : ${guildes}" th:value="${guilde.id}" th:text="|[${guilde.tag}] ${guilde.nom}|"></option>
+        </select>
+    </label>
+
+    <button type="submit">Rejoindre</button>
+</form>
+</body>
+</html>
