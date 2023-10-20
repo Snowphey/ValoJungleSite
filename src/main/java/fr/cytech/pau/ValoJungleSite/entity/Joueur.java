@@ -1,29 +1,39 @@
 package fr.cytech.pau.ValoJungleSite.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 
 public class Joueur {
-
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nom;
+
     private String prenom;
+
     private String pseudo;
 
+    private boolean estChef = false;
 
-    private void setId(long id) {
-        this.id = id;
+    @OneToOne
+    private Utilisateur utilisateur;
+
+    @ManyToOne
+    private Guilde guilde;
+
+    @OneToMany
+    private List<Partie> parties;
+
+    public Long getId() {
+        return id;
     }
 
-    public long getId() {
-        return id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -50,13 +60,35 @@ public class Joueur {
         this.pseudo = pseudo;
     }
 
-    @OneToOne
-    private Utilisateur utilisateurJoueur;
+    public boolean isEstChef() {
+        return estChef;
+    }
 
-    @OneToMany
-    Set<Evenement> evenementInscrit;
+    public void setEstChef(boolean estChef) {
+        this.estChef = estChef;
+    }
 
-    @OneToMany
-    Set<Guilde> guildeCree;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
 
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Guilde getGuilde() {
+        return guilde;
+    }
+
+    public void setGuilde(Guilde guilde) {
+        this.guilde = guilde;
+    }
+
+    public List<Partie> getParties() {
+        return parties;
+    }
+
+    public void setParties(List<Partie> parties) {
+        this.parties = parties;
+    }
 }

@@ -16,6 +16,12 @@ public class Utilisateur {
 
     private String role;
 
+    @OneToOne(orphanRemoval = true)
+    private Joueur joueur;
+
+    @OneToOne(orphanRemoval = true)
+    private Organisateur organisateur;
+
     public Long getId() {
         return id;
     }
@@ -46,5 +52,21 @@ public class Utilisateur {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
+
+    public Organisateur getOrganisateur() {
+        return organisateur;
+    }
+
+    public void setOrganisateur(Organisateur organisateur) {
+        this.organisateur = organisateur;
     }
 }

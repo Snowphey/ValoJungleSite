@@ -25,6 +25,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
+                /*
+                // Pour retirer les authentifications sur tout le site pour le test,
+                // décommenter ce bloc et commenter les autres routes
+                .requestMatchers(
+                        new AntPathRequestMatcher("/**")
+                ).permitAll()
+                */
                 .requestMatchers(
                         new AntPathRequestMatcher("/h2-console/**")
                 ).permitAll()

@@ -1,25 +1,31 @@
 package fr.cytech.pau.ValoJungleSite.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Organisateur {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String discordUsername;
+
     private String email;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToOne
+    private Utilisateur utilisateur;
+
+    @OneToMany
+    private List<Partie> partiesCreees;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDiscordUsername() {
@@ -38,11 +44,19 @@ public class Organisateur {
         this.email = email;
     }
 
-    @OneToOne
-    private Utilisateur utilisateurOrganisateur;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
 
-    @OneToMany
-    Set<Evenement> evenementOrganise;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
+    public List<Partie> getPartiesCreees() {
+        return partiesCreees;
+    }
 
+    public void setPartiesCreees(List<Partie> evenementsCrees) {
+        this.partiesCreees = evenementsCrees;
+    }
 }

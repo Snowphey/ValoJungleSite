@@ -1,29 +1,37 @@
 package fr.cytech.pau.ValoJungleSite.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
-import java.sql.Date;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-public class Evenement {
+public class Partie {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int nbJoueurMin;
+
     private int nbJoueurMax;
-    private Date dateHeureRDV;
+
+    private LocalDateTime dateHeureRDV;
+
     private boolean inscriptionsOuvertes;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    private ModeDeJeu modeDeJeu;
+
+    @OneToMany
+    private List<Joueur> participants;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getNbJoueurMin() {
@@ -42,11 +50,11 @@ public class Evenement {
         this.nbJoueurMax = nbJoueurMax;
     }
 
-    public Date getDateHeureRDV() {
+    public LocalDateTime getDateHeureRDV() {
         return dateHeureRDV;
     }
 
-    public void setDateHeureRDV(Date dateHeureRDV) {
+    public void setDateHeureRDV(LocalDateTime dateHeureRDV) {
         this.dateHeureRDV = dateHeureRDV;
     }
 
@@ -58,10 +66,19 @@ public class Evenement {
         this.inscriptionsOuvertes = inscriptionsOuvertes;
     }
 
-    @OneToMany
-    Set<Joueur> participant;
+    public ModeDeJeu getModeDeJeu() {
+        return modeDeJeu;
+    }
 
-    @OneToOne
-    private EvenementType evenementType;
+    public void setModeDeJeu(ModeDeJeu type) {
+        this.modeDeJeu = type;
+    }
 
+    public List<Joueur> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Joueur> participants) {
+        this.participants = participants;
+    }
 }

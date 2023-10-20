@@ -1,27 +1,32 @@
 package fr.cytech.pau.ValoJungleSite.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Guilde {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nom;
+
     private String tag;
+
     private String lienEmbleme;
+
     private String couleurHex;
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany
+    private List<Joueur> membres;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -56,8 +61,11 @@ public class Guilde {
         this.couleurHex = couleurHex;
     }
 
-    @OneToMany
-    Set<Joueur> membreGuilde;
+    public List<Joueur> getMembres() {
+        return membres;
+    }
 
-
+    public void setMembres(List<Joueur> membres) {
+        this.membres = membres;
+    }
 }
