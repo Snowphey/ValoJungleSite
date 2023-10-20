@@ -2,6 +2,7 @@ package fr.cytech.pau.ValoJungleSite.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Organisateur {
     private Utilisateur utilisateur;
 
     @OneToMany
-    private List<Partie> partiesCreees;
+    private List<Partie> partiesCreees = new ArrayList<>();
 
     public Long getId() {
         return id;

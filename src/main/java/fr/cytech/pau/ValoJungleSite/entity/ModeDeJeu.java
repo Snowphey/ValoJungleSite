@@ -2,6 +2,7 @@ package fr.cytech.pau.ValoJungleSite.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class ModeDeJeu {
     private String lienGIF;
 
     @OneToMany(mappedBy = "modeDeJeu", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<Partie> parties;
+    private List<Partie> parties = new ArrayList<>();
 
     public Long getId() {
         return id;

@@ -4,6 +4,7 @@ package fr.cytech.pau.ValoJungleSite.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Partie {
     private ModeDeJeu modeDeJeu;
 
     @OneToMany
-    private List<Joueur> participants;
+    private List<Joueur> participants = new ArrayList<>();
 
     public Long getId() {
         return id;

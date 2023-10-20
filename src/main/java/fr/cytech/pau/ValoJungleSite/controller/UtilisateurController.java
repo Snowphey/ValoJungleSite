@@ -50,8 +50,6 @@ public class UtilisateurController {
     public String postNewUser(@ModelAttribute Utilisateur utilisateur, HttpServletRequest request) {
         utilisateur.setPassword(bCryptPasswordEncoder.encode(utilisateur.getPassword()));
 
-        utilisateur = utilisateurRepository.save(utilisateur);
-
         if(utilisateur.getRole().equals("player")) {
             Joueur joueur = new Joueur();
             joueur.setNom(request.getParameter("nom"));
@@ -59,6 +57,7 @@ public class UtilisateurController {
             joueur.setPseudo(request.getParameter("pseudo"));
 
             utilisateur.setJoueur(joueur);
+            joueur.setUtilisateur(utilisateur);
 
             utilisateurRepository.save(utilisateur);
         } else {
@@ -67,6 +66,7 @@ public class UtilisateurController {
             organisateur.setEmail(request.getParameter("email"));
 
             utilisateur.setOrganisateur(organisateur);
+            organisateur.setUtilisateur(utilisateur);
 
             utilisateurRepository.save(utilisateur);
         }

@@ -2,6 +2,7 @@ package fr.cytech.pau.ValoJungleSite.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Guilde {
     private String couleurHex;
 
     @OneToMany
-    private List<Joueur> membres;
+    private List<Joueur> membres = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -63,6 +64,10 @@ public class Guilde {
 
     public List<Joueur> getMembres() {
         return membres;
+    }
+
+    public void addMembre(Joueur membre) {
+        this.membres.add(membre);
     }
 
     public void setMembres(List<Joueur> membres) {

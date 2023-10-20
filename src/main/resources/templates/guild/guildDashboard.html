@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des guildes - Valo Jungle Site</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Tag</th>
+            <th>Lien emblème</th>
+            <th>Couleur</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="guilde: ${guildes}">
+            <td th:text="${guilde.id}"></td>
+            <td th:text="${guilde.nom}"></td>
+            <td th:text="|[${guilde.tag}]|"></td>
+            <td th:text="${guilde.lienEmbleme}"></td>
+            <td th:style="|background-color: ${guilde.couleurHex}|"></td>
+            <td>
+                <a th:href="@{/player/guild-dashboard/edit-guild/{id}(id=${guilde.id})}">
+                    Éditer
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/player/guild-dashboard/delete-guild/{id}(id=${guilde.id})}">
+                    Supprimer
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a href="/player/guild-dashboard/new-guild">Créer une nouvelle guilde</a>
+    </body>
+</html>
