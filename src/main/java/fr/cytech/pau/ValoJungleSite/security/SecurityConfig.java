@@ -50,10 +50,16 @@ public class SecurityConfig {
                 .requestMatchers(
                         new AntPathRequestMatcher("/img/**")
                 ).permitAll()
+                .requestMatchers(
+                        new AntPathRequestMatcher("/register")
+                ).permitAll()
                 .anyRequest().authenticated()
         ).formLogin(Customizer.withDefaults());
 
         http.csrf(AbstractHttpConfigurer::disable);
+
+        http
+                .logout((logout) -> logout.logoutSuccessUrl("/"));
 
         http.headers((headers) -> headers
                 .frameOptions(
