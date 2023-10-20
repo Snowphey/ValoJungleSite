@@ -47,6 +47,9 @@ public class SecurityConfig {
                         new AntPathRequestMatcher("/player/**")
                 ).hasRole("player")
                 //*/
+                .requestMatchers(
+                        new AntPathRequestMatcher("/img/**")
+                ).permitAll()
                 .anyRequest().authenticated()
         ).formLogin(Customizer.withDefaults());
 
