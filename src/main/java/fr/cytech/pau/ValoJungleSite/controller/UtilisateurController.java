@@ -74,7 +74,7 @@ public class UtilisateurController {
         return "redirect:/admin/user-dashboard";
     }
 
-    @GetMapping(path ="/user-dashboard/edit-user/{id}")
+    @GetMapping(path ="/admin/user-dashboard/edit-user/{id}")
     public String editUser(@PathVariable(value="id") String id, Model model) {
         Utilisateur utilisateur = utilisateurRepository.findById(Long.valueOf(id)).orElse(null);
 

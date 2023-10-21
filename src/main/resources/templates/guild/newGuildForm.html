@@ -2,31 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <div th:replace="~{/common/bootstrap.html}"></div>
     <title>Création d'une guilde - Valo Jungle Site</title>
 </head>
 <body>
-<form method="POST">
-    <label>
-        Nom :
-        <input type="text" name="nom" required>
-    </label>
+    <div th:replace="~{/common/navbar.html}"></div>
 
-    <label>
-        Tag (ex: [VJL]) en trois lettres :
-        <input oninput="this.value = this.value.toUpperCase()" type="text" name="tag" minlength="3" maxlength="3" size="3" required>
-    </label>
+    <form method="POST">
+        <label>
+            Nom :
+            <input type="text" name="nom" required>
+        </label>
 
-    <label>
-        Lien de l'emblème de la guilde :
-        <input type="text" name="lienEmbleme" required>
-    </label>
+        <label>
+            Tag (ex: [VJL]) en trois lettres :
+            <input oninput="this.value = this.value.toUpperCase()" type="text" name="tag" minlength="3" maxlength="3" size="3" required>
+        </label>
 
-    <label>
-        Couleur de la guilde
-        <input type="color" name="couleurHex" required>
-    </label>
+        <label>
+            Lien de l'emblème de la guilde :
+            <input type="text" name="lienEmbleme" required>
+        </label>
 
-    <button type="submit">Enregistrer</button>
-</form>
+        <label>
+            Couleur de la guilde
+            <input type="color" name="couleurHex" required>
+        </label>
+
+        <button type="submit">Enregistrer</button>
+    </form>
 </body>
 </html>

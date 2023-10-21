@@ -7,7 +7,11 @@ import fr.cytech.pau.ValoJungleSite.repository.JoueurRepository;
 import fr.cytech.pau.ValoJungleSite.repository.UtilisateurRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +32,6 @@ public class MainController {
 
     @GetMapping(path = "/")
     public String home(Model model) {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        model.addAttribute("loggedIn", !principal.equals("anonymousUser"));
-
         return "home";
     }
 
@@ -55,5 +55,10 @@ public class MainController {
         utilisateurRepository.save(utilisateur);
 
         return "redirect:/";
+    }
+
+    @GetMapping(path = "/admin")
+    public String dashboard(Model model)  {
+        return "adminDashboard";
     }
 }

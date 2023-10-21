@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <div th:replace="~{/common/bootstrap.html}"></div>
     <title>Dashboard admin - Valo Jungle Site</title>
 </head>
 <body>
+    <div th:replace="~{/common/navbar.html}"></div>
+
     <a href="/admin/user-dashboard">Gérer les utilisateurs</a>
     <a href="/admin/game-dashboard">Gérer les parties</a>
     <a href="/admin/gamemode-dashboard">Gérer les modes de jeu</a>
