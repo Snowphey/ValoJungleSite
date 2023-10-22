@@ -30,12 +30,12 @@
             <td th:text="${partie.dateHeureRDV}"></td>
             <td th:text="${partie.inscriptionsOuvertes}"></td>
             <td>
-                <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}">
+                <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}" class="btn btn-primary">
                     Éditer
                 </a>
             </td>
             <td>
-                <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}">
+                <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}" class="btn btn-primary">
                     Supprimer
                 </a>
             </td>
@@ -44,6 +44,6 @@
     </table>
 
 
-    <a href="/admin/game-dashboard/new-game">Créer une nouvelle partie</a>
+    <a href="/admin/game-dashboard/new-game" class="btn btn-primary">Créer une nouvelle partie</a>
 </body>
 </html>

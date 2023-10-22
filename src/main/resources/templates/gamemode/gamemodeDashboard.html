@@ -24,14 +24,14 @@
             <td th:text="${modeDeJeu.id}"></td>
             <td th:text="${modeDeJeu.nom}"></td>
             <td th:text="${modeDeJeu.description}"></td>
-            <td th:text="${modeDeJeu.lienGIF}"></td>
+            <td th:style="'max-width: 300px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'"><a th:href="${modeDeJeu.lienGIF}" th:text="${modeDeJeu.lienGIF}"></a></td>
             <td>
-                <a th:href="@{/admin/gamemode-dashboard/edit-gamemode/{id}(id=${modeDeJeu.id})}">
+                <a th:href="@{/admin/gamemode-dashboard/edit-gamemode/{id}(id=${modeDeJeu.id})}" class="btn btn-primary">
                     Éditer
                 </a>
             </td>
             <td>
-                <a th:href="@{/admin/gamemode-dashboard/delete-gamemode/{id}(id=${modeDeJeu.id})}">
+                <a th:href="@{/admin/gamemode-dashboard/delete-gamemode/{id}(id=${modeDeJeu.id})}" class="btn btn-primary">
                     Supprimer
                 </a>
             </td>
@@ -40,6 +40,6 @@
     </table>
 
 
-    <a href="/admin/gamemode-dashboard/new-gamemode">Créer un nouveau mode de jeu</a>
+    <a href="/admin/gamemode-dashboard/new-gamemode" class="btn btn-primary">Créer un nouveau mode de jeu</a>
 </body>
 </html>

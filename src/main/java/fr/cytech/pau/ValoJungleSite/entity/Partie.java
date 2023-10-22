@@ -82,4 +82,12 @@ public class Partie {
     public void setParticipants(List<Joueur> participants) {
         this.participants = participants;
     }
+
+    public void addParticipant(Joueur participant) {
+        this.participants.add(participant);
+    }
+
+    public void removeParticipant(Joueur participant) {
+        this.participants.remove(participant);
+    }
 }

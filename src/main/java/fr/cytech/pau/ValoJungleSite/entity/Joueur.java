@@ -92,4 +92,12 @@ public class Joueur {
     public void setParties(List<Partie> parties) {
         this.parties = parties;
     }
+
+    public void addPartie(Partie partie) {
+        this.parties.add(partie);
+    }
+
+    public void removePartie(Partie partie) {
+        this.parties.remove(partie);
+    }
 }

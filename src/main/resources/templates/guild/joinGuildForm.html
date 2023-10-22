@@ -6,17 +6,32 @@
     <title>Rejoindre une guilde - Valo Jungle Site</title>
 </head>
 <body>
-    <div th:replace="~{/common/navbar.html}"></div>
+<div th:replace="~{/common/navbar.html}"></div>
 
-    <form method="POST">
-        <label>
-            Guilde :
-            <select name="guilde" required>
-                <option th:each="guilde : ${guildes}" th:value="${guilde.id}" th:text="|[${guilde.tag}] ${guilde.nom}|"></option>
-            </select>
-        </label>
-
-        <button type="submit">Rejoindre</button>
-    </form>
+<div class="container">
+    <div class="text-center">
+        <div class="row">
+            <div th:if="${guildes.isEmpty()}">
+                <p>Aucune guilde n'est disponible pour le moment.</p>
+            </div>
+            <div th:each="guilde : ${guildes}" class="col-md-4">
+                <div class="card mb-4" th:style="'border: 2px solid; border-color: ' + ${guilde.couleurHex}">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
+                        <div class="text-center">
+                            <img th:src="${guilde.lienEmbleme}" class="card-img-top" alt="Emblème de la guilde" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form method="POST">
+                            <input type="hidden" name="guilde" th:value="${guilde.id}" />
+                            <button type="submit" class="btn btn-primary">Rejoindre</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

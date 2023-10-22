@@ -26,12 +26,12 @@
                 <td th:text="${utilisateur.password}"></td>
                 <td th:text="${utilisateur.role}"></td>
                 <td>
-                    <a th:href="@{/admin/user-dashboard/edit-user/{id}(id=${utilisateur.id})}">
+                    <a th:href="@{/admin/user-dashboard/edit-user/{id}(id=${utilisateur.id})}" class="btn btn-primary">
                         Éditer
                     </a>
                 </td>
                 <td>
-                    <a th:href="@{/admin/user-dashboard/delete-user/{id}(id=${utilisateur.id})}">
+                    <a th:href="@{/admin/user-dashboard/delete-user/{id}(id=${utilisateur.id})}" class="btn btn-primary">
                         Supprimer
                     </a>
                 </td>
@@ -40,6 +40,6 @@
     </table>
 
 
-    <a href="/admin/user-dashboard/new-user">Créer un nouvel utilisateur</a>
+    <a href="/admin/user-dashboard/new-user" class="btn btn-primary">Créer un nouvel utilisateur</a>
 </body>
 </html>
