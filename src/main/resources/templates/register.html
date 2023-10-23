@@ -8,34 +8,57 @@
 <body>
     <div th:replace="~{/common/navbar.html}"></div>
 
-    <form method="POST">
-        <label>
-            Nom d'utilisateur :
-            <input type="text" name="username" required>
-        </label>
+    <div class="container-fluid text-center ">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    Inscription
+                </h3>
+                <form role="form" method="POST">
+                    <div class="form-group">
 
-        <label>
-            Mot de passe :
-            <input type="password" name="password" required>
-        </label>
+                        <label>
+                            Nom d'utilisateur
+                            <input class="form-control" type="text" name="username" placeholder="Nom d'utilisateur" required>
+                        </label>
+                    </div>
+                    <div class="form-group">
 
-        <div id="playerFields">
-            <!-- Champs additionnels pour le joueur -->
-            <label>
-                Nom :
-                <input type="text" name="nom" required>
-            </label>
-            <label>
-                Prénom :
-                <input type="text" name="prenom" required>
-            </label>
-            <label>
-                Pseudonyme :
-                <input type="text" name="pseudo" required>
-            </label>
+                        <label>
+                            Mot de passe
+                            <input class="form-control" type="password" name="password" placeholder="Mot de passe" required>
+                        </label>
+                    </div>
+                    <div class="form-group">
+
+                        <label>
+                            Nom
+                            <input class="form-control" type="text" name="nom" placeholder="Nom" required>
+                        </label>
+                    </div>
+                    <div class="form-group">
+
+                        <label>
+                            Prénom
+                            <input class="form-control" type="text" name="prenom" placeholder="Prénom" required>
+                        </label>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label>
+                            Pseudonyme
+                            <input class="form-control" type="text" name="pseudo" placeholder="Pseudonyme :" required>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <button type="submit">S'inscrire</button>
-    </form>
 </body>
 </html>

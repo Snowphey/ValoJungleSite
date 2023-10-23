@@ -51,6 +51,9 @@ public class SecurityConfig {
                         new AntPathRequestMatcher("/img/**")
                 ).permitAll()
                 .requestMatchers(
+                        new AntPathRequestMatcher("/css/**")
+                ).permitAll()
+                .requestMatchers(
                         new AntPathRequestMatcher("/register")
                 ).permitAll()
                 .anyRequest().authenticated()
