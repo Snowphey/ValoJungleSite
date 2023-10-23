@@ -8,41 +8,46 @@
 <body>
     <div th:replace="~{/common/navbar.html}"></div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Mode de jeu</th>
-            <th>Nombre de joueurs minimum</th>
-            <th>Nombre de joueurs maximum</th>
-            <th>Date et heure de rendez-vous</th>
-            <th>Inscriptions ouvertes ?</th>
-            <th>Modifier</th>
-            <th>Supprimer</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="partie: ${parties}">
-            <td th:text="${partie.id}"></td>
-            <td th:text="${partie.modeDeJeu.nom}"></td>
-            <td th:text="${partie.nbJoueursMin}"></td>
-            <td th:text="${partie.nbJoueursMax}"></td>
-            <td th:text="${partie.dateHeureRDV}"></td>
-            <td th:text="${partie.inscriptionsOuvertes}"></td>
-            <td>
-                <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}" class="btn btn-primary">
-                    Éditer
-                </a>
-            </td>
-            <td>
-                <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}" class="btn btn-primary">
-                    Supprimer
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Mode de jeu</th>
+                        <th>Nombre de joueurs minimum</th>
+                        <th>Nombre de joueurs maximum</th>
+                        <th>Date et heure de rendez-vous</th>
+                        <th>Inscriptions ouvertes ?</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="partie: ${parties}">
+                        <td th:text="${partie.id}"></td>
+                        <td th:text="${partie.modeDeJeu.nom}"></td>
+                        <td th:text="${partie.nbJoueursMin}"></td>
+                        <td th:text="${partie.nbJoueursMax}"></td>
+                        <td th:text="${partie.dateHeureRDV}"></td>
+                        <td th:text="${partie.inscriptionsOuvertes}"></td>
+                        <td>
+                            <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}" class="btn btn-primary">
+                                Éditer
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}" class="btn btn-primary">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <a href="/admin/game-dashboard/new-game" class="btn btn-primary">Créer une nouvelle partie</a>
 </body>
