@@ -14,12 +14,6 @@
     <img src="/img/LGlogo.png" alt="lg">
 
 
-    <div th:if="${#authentication.getPrincipal().equals('anonymousUser')}">
-        <a href="/register" class="btn btn-primary">S'inscrire</a>
-        <a href="/login" class="btn btn-primary">Se connecter</a>
-    </div>
-    <div th:unless="${#authentication.getPrincipal().equals('anonymousUser')}">
-        <a href="/logout" class="btn btn-primary">Se déconnecter</a>
-    </div>
+
 </body>
 </html>
