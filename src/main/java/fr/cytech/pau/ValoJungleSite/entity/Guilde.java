@@ -19,7 +19,7 @@ public class Guilde {
 
     private String couleurHex;
 
-    @OneToMany
+    @OneToMany(mappedBy = "guilde")
     private List<Joueur> membres = new ArrayList<>();
 
     public Long getId() {

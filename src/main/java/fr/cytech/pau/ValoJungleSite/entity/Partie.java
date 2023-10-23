@@ -24,8 +24,11 @@ public class Partie {
     @ManyToOne
     private ModeDeJeu modeDeJeu;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "parties")
     private List<Joueur> participants = new ArrayList<>();
+
+    @ManyToOne
+    private Organisateur createur;
 
     public Long getId() {
         return id;
@@ -89,5 +92,13 @@ public class Partie {
 
     public void removeParticipant(Joueur participant) {
         this.participants.remove(participant);
+    }
+
+    public Organisateur getCreateur() {
+        return createur;
+    }
+
+    public void setCreateur(Organisateur createur) {
+        this.createur = createur;
     }
 }

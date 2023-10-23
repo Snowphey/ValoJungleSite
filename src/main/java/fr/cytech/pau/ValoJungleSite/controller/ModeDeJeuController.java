@@ -1,9 +1,13 @@
 package fr.cytech.pau.ValoJungleSite.controller;
 
-import fr.cytech.pau.ValoJungleSite.entity.ModeDeJeu;
+import fr.cytech.pau.ValoJungleSite.entity.*;
 import fr.cytech.pau.ValoJungleSite.repository.ModeDeJeuRepository;
+import fr.cytech.pau.ValoJungleSite.repository.PartieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +20,9 @@ import java.util.List;
 public class ModeDeJeuController {
     @Autowired
     ModeDeJeuRepository modeDeJeuRepository;
+
+    @Autowired
+    PartieRepository partieRepository;
 
     @GetMapping(path = "/admin/gamemode-dashboard")
     public String gamemodeDashboard(Model model) {
@@ -54,10 +61,25 @@ public class ModeDeJeuController {
         return "redirect:/admin/gamemode-dashboard";
     }
 
+    @Transactional
     @GetMapping(path = "/admin/gamemode-dashboard/delete-gamemode/{id}")
     public String deleteGamemode(@PathVariable(value = "id") Long id) {
         ModeDeJeu modeDeJeu = modeDeJeuRepository.findById(id).orElse(null);
         if (modeDeJeu != null) {
+            for(Partie partie : modeDeJeu.getParties()) {
+                Organisateur organisateur = partie.getCreateur();
+
+                if (organisateur != null) {
+                    organisateur.removePartieCreee(partie);
+                }
+
+                for(Joueur participant : partie.getParticipants()) {
+                    participant.removePartie(partie);
+                }
+
+                partieRepository.delete(partie);
+            }
+
             modeDeJeuRepository.delete(modeDeJeu);
         }
         return "redirect:/admin/gamemode-dashboard";

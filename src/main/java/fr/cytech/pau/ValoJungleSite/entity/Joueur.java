@@ -26,7 +26,7 @@ public class Joueur {
     @ManyToOne
     private Guilde guilde;
 
-    @OneToMany
+    @ManyToMany
     private List<Partie> parties = new ArrayList<>();
 
     public Long getId() {

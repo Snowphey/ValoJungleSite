@@ -18,7 +18,7 @@ public class Organisateur {
     @OneToOne
     private Utilisateur utilisateur;
 
-    @OneToMany
+    @OneToMany(mappedBy = "createur", cascade = CascadeType.REMOVE)
     private List<Partie> partiesCreees = new ArrayList<>();
 
     public Long getId() {
@@ -57,7 +57,11 @@ public class Organisateur {
         return partiesCreees;
     }
 
-    public void setPartiesCreees(List<Partie> evenementsCrees) {
-        this.partiesCreees = evenementsCrees;
+    public void setPartiesCreees(List<Partie> partiesCreees) {
+        this.partiesCreees = partiesCreees;
     }
+
+    public void addPartieCreee(Partie partieCreee) { this.partiesCreees.add(partieCreee); }
+
+    public void removePartieCreee(Partie partieCreee) { this.partiesCreees.remove(partieCreee); }
 }

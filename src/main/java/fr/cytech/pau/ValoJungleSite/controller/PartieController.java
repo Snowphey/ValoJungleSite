@@ -1,15 +1,13 @@
 package fr.cytech.pau.ValoJungleSite.controller;
 
 import fr.cytech.pau.ValoJungleSite.entity.*;
-import fr.cytech.pau.ValoJungleSite.repository.JoueurRepository;
-import fr.cytech.pau.ValoJungleSite.repository.ModeDeJeuRepository;
-import fr.cytech.pau.ValoJungleSite.repository.PartieRepository;
-import fr.cytech.pau.ValoJungleSite.repository.UtilisateurRepository;
+import fr.cytech.pau.ValoJungleSite.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class PartieController {
@@ -33,6 +32,9 @@ public class PartieController {
 
     @Autowired
     JoueurRepository joueurRepository;
+
+    @Autowired
+    OrganisateurRepository organisateurRepository;
 
     @GetMapping(path = "/admin/game-dashboard")
     public String gameDashboard(Model model) {
@@ -55,6 +57,25 @@ public class PartieController {
     @PostMapping(path = "/admin/game-dashboard/new-game")
     public String postNewGame(@ModelAttribute Partie partie, HttpServletRequest request) {
         ModeDeJeu modeDeJeu = modeDeJeuRepository.findById(Long.valueOf(request.getParameter("modeDeJeu"))).orElse(null);
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof User) {
+            User userConnecte = (User) principal;
+            Utilisateur utilisateurConnecte = utilisateurRepository.findByUsername(userConnecte.getUsername());
+
+            if (utilisateurConnecte != null) {
+                Organisateur organisateur = utilisateurConnecte.getOrganisateur();
+
+                if (organisateur != null) {
+                    partie.setCreateur(organisateur);
+                    partieRepository.save(partie);
+
+                    organisateur.addPartieCreee(partie);
+                    organisateurRepository.save(organisateur);
+                }
+            }
+        }
 
         partie.setModeDeJeu(modeDeJeu);
 
@@ -92,11 +113,32 @@ public class PartieController {
         return "redirect:/admin/game-dashboard";
     }
 
+    @Transactional
     @GetMapping(path ="/admin/game-dashboard/delete-game/{id}")
     public String deleteGame(@PathVariable(value="id") String id, Model model) {
         Partie partie = partieRepository.findById(Long.valueOf(id)).orElse(null);
 
         if(partie != null) {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            if (principal instanceof User) {
+                User userConnecte = (User) principal;
+                Utilisateur utilisateurConnecte = utilisateurRepository.findByUsername(userConnecte.getUsername());
+
+                if (utilisateurConnecte != null) {
+                    Organisateur organisateur = utilisateurConnecte.getOrganisateur();
+
+                    if (organisateur != null) {
+                        organisateur.removePartieCreee(partie);
+                        organisateurRepository.save(organisateur);
+                    }
+                }
+            }
+
+            for(Joueur participant : partie.getParticipants()) {
+                participant.removePartie(partie);
+            }
+
             partieRepository.delete(partie);
         }
 
@@ -105,7 +147,7 @@ public class PartieController {
 
     @GetMapping("/player/join-game")
     public String joinGame(Model model) {
-        List<Partie> partiesOuvertes = partieRepository.findByInscriptionsOuvertes(true);
+        List<Partie> partiesOuvertesEtRejointes = partieRepository.findByInscriptionsOuvertes(true);
         List<Partie> partiesRejointes = new ArrayList<>();
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -124,12 +166,18 @@ public class PartieController {
             }
         }
 
-        model.addAttribute("parties", partiesOuvertes);
-        model.addAttribute("partiesRejointes", partiesRejointes);
+        for(Partie partieRejointe : partiesRejointes) {
+            if(!partiesOuvertesEtRejointes.contains(partieRejointe)) {
+                partiesOuvertesEtRejointes.add(partieRejointe);
+            }
+        }
+
+        model.addAttribute("parties", partiesOuvertesEtRejointes);
 
         return "game/joinGameForm";
     }
 
+    @Transactional
     @PostMapping("/player/join-game")
     public String postJoinGame(Model model, HttpServletRequest request) {
         Partie partieRejointe = partieRepository.findById(Long.valueOf(request.getParameter("partie"))).orElse(null);
@@ -147,6 +195,9 @@ public class PartieController {
                     joueur.addPartie(partieRejointe);
 
                     partieRejointe.addParticipant(joueur);
+
+                    partieRejointe.setInscriptionsOuvertes(partieRejointe.getNbJoueursMax() != partieRejointe.getParticipants().size());
+
                     partieRepository.save(partieRejointe);
 
                     joueurRepository.save(joueur);
@@ -157,6 +208,7 @@ public class PartieController {
         return "redirect:/player/join-game";
     }
 
+    @Transactional
     @PostMapping("/player/leave-game")
     public String postLeaveGame(Model model, HttpServletRequest request) {
         Partie partieRejointe = partieRepository.findById(Long.valueOf(request.getParameter("partie"))).orElse(null);
@@ -170,10 +222,15 @@ public class PartieController {
 
                 Joueur joueur = joueurRepository.findById(utilisateurConnecte.getJoueur().getId()).orElse(null);
 
-                if(joueur != null && partieRejointe.isInscriptionsOuvertes()) {
+                if(joueur != null) {
                     joueur.removePartie(partieRejointe);
 
                     partieRejointe.removeParticipant(joueur);
+
+                    if(partieRejointe.getParticipants().size() < partieRejointe.getNbJoueursMax()) {
+                        partieRejointe.setInscriptionsOuvertes(true);
+                    }
+
                     partieRepository.save(partieRejointe);
 
                     joueurRepository.save(joueur);

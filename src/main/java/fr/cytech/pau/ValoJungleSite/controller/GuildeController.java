@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +53,7 @@ public class GuildeController {
         return "guild/newGuildFormAdmin";
     }
 
+    @Transactional
     @PostMapping(path = "/admin/guild-dashboard/new-guild")
     public String postNewGuildAdmin(@ModelAttribute Guilde guilde, HttpServletRequest request) {
         Joueur joueur = joueurRepository.findById(Long.valueOf(request.getParameter("chef"))).orElse(null);
@@ -95,6 +97,7 @@ public class GuildeController {
         return "guild/editGuildFormAdmin";
     }
 
+    @Transactional
     @PostMapping(path = "/admin/guild-dashboard/edit-guild/{id}")
     public String postEditGuildAdmin(@PathVariable(value = "id") Long id, @ModelAttribute Guilde guilde, HttpServletRequest request) {
         Guilde guildeEnBD = guildeRepository.findById(id).orElse(null);
@@ -137,6 +140,7 @@ public class GuildeController {
         return "redirect:/admin/guild-dashboard";
     }
 
+    @Transactional
     @GetMapping(path = "/admin/guild-dashboard/delete-guild/{id}")
     public String deleteGuild(@PathVariable(value = "id") Long id) {
         Guilde guilde = guildeRepository.findById(id).orElse(null);
@@ -182,6 +186,7 @@ public class GuildeController {
         return "guild/newGuildForm";
     }
 
+    @Transactional
     @PostMapping(path = "/player/new-guild")
     public String postNewGuild(@ModelAttribute Guilde guilde) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -235,6 +240,7 @@ public class GuildeController {
         return "guild/joinGuildForm";
     }
 
+    @Transactional
     @PostMapping("/player/join-guild")
     public String postJoinGuild(Model model, HttpServletRequest request) {
         Guilde guildeRejointe = guildeRepository.findById(Long.valueOf(request.getParameter("guilde"))).orElse(null);
@@ -262,6 +268,7 @@ public class GuildeController {
         return "redirect:/";
     }
 
+    @Transactional
     @GetMapping("/player/leave-guild")
     public String leaveGuild(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -1,21 +1,19 @@
 package fr.cytech.pau.ValoJungleSite.controller;
 
-import fr.cytech.pau.ValoJungleSite.entity.Joueur;
-import fr.cytech.pau.ValoJungleSite.entity.Organisateur;
-import fr.cytech.pau.ValoJungleSite.entity.Utilisateur;
-import fr.cytech.pau.ValoJungleSite.repository.JoueurRepository;
-import fr.cytech.pau.ValoJungleSite.repository.OrganisateurRepository;
-import fr.cytech.pau.ValoJungleSite.repository.UtilisateurRepository;
+import fr.cytech.pau.ValoJungleSite.entity.*;
+import fr.cytech.pau.ValoJungleSite.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,6 +26,12 @@ public class UtilisateurController {
 
     @Autowired
     OrganisateurRepository organisateurRepository;
+
+    @Autowired
+    PartieRepository partieRepository;
+
+    @Autowired
+    GuildeRepository guildeRepository;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -87,43 +91,19 @@ public class UtilisateurController {
     public String postEditUser(@PathVariable(value="id") String id, @ModelAttribute Utilisateur utilisateur, HttpServletRequest request) {
         Utilisateur utilisateurEnBD = utilisateurRepository.getReferenceById(Long.valueOf(id));
 
-        // Si le rôle de l'utilisateur a été changé
-        if(!utilisateurEnBD.getRole().equals(utilisateur.getRole())) {
-            if(utilisateur.getRole().equals("player")) {
-                // Si le nouveau rôle est joueur, on supprime l'ancien organisateur associé à l'utilisateur
-                utilisateurEnBD.setOrganisateur(null);
+        if(utilisateurEnBD.getRole().equals("player")) {
+            Joueur joueur = utilisateurEnBD.getJoueur();
+            joueur.setNom(request.getParameter("nom"));
+            joueur.setPrenom(request.getParameter("prenom"));
+            joueur.setPseudo(request.getParameter("pseudo"));
 
-                Joueur joueur = new Joueur();
-                joueur.setNom(request.getParameter("nom"));
-                joueur.setPrenom(request.getParameter("prenom"));
-                joueur.setPseudo(request.getParameter("pseudo"));
-
-                utilisateurEnBD.setJoueur(joueur);
-            } else {
-                // Si le nouveau rôle est organisateur, on supprime l'ancien joueur associé à l'utilisateur
-                utilisateurEnBD.setJoueur(null);
-
-                Organisateur organisateur = new Organisateur();
-                organisateur.setDiscordUsername(request.getParameter("discordUsername"));
-                organisateur.setEmail(request.getParameter("email"));
-
-                utilisateurEnBD.setOrganisateur(organisateur);
-            }
+            utilisateurEnBD.setJoueur(joueur);
         } else {
-            if(utilisateurEnBD.getRole().equals("player")) {
-                Joueur joueur = utilisateurEnBD.getJoueur();
-                joueur.setNom(request.getParameter("nom"));
-                joueur.setPrenom(request.getParameter("prenom"));
-                joueur.setPseudo(request.getParameter("pseudo"));
+            Organisateur organisateur = utilisateurEnBD.getOrganisateur();
+            organisateur.setDiscordUsername(request.getParameter("discordUsername"));
+            organisateur.setEmail(request.getParameter("email"));
 
-                utilisateurEnBD.setJoueur(joueur);
-            } else {
-                Organisateur organisateur = utilisateurEnBD.getOrganisateur();
-                organisateur.setDiscordUsername(request.getParameter("discordUsername"));
-                organisateur.setEmail(request.getParameter("email"));
-
-                utilisateurEnBD.setOrganisateur(organisateur);
-            }
+            utilisateurEnBD.setOrganisateur(organisateur);
         }
 
         if(!utilisateur.getPassword().isEmpty()) {
@@ -132,18 +112,60 @@ public class UtilisateurController {
         }
 
         utilisateurEnBD.setUsername(utilisateur.getUsername());
-        utilisateurEnBD.setRole(utilisateur.getRole());
 
         utilisateurRepository.save(utilisateurEnBD);
 
         return "redirect:/admin/user-dashboard";
     }
 
-    @GetMapping(path ="/admin/user-dashboard/delete-user/{id}")
-    public String deleteUser(@PathVariable(value="id") String id, Model model) {
+    @Transactional
+    @GetMapping(path = "/admin/user-dashboard/delete-user/{id}")
+    public String deleteUser(@PathVariable(value = "id") String id, Model model) {
         Utilisateur utilisateur = utilisateurRepository.findById(Long.valueOf(id)).orElse(null);
 
-        if(utilisateur != null) {
+        if (utilisateur != null) {
+            if (utilisateur.getRole().equals("player")) {
+                Joueur joueur = utilisateur.getJoueur();
+
+                Guilde guilde = joueur.getGuilde();
+
+                joueur.setGuilde(null);
+
+                // Si le joueur était chef de sa guilde, elle est supprimée
+                if(joueur.isEstChef()) {
+                    // Tous les membres de la guilde du joueur n'ont plus de guilde
+                    for(Joueur player : guilde.getMembres()) {
+                        player.setGuilde(null);
+                    }
+
+                    guildeRepository.delete(guilde);
+                }
+
+                // On retire la participation à toutes les parties du joueur
+                for(Partie partie : joueur.getParties()) {
+                    partie.removeParticipant(joueur);
+                }
+
+                joueur.setParties(new ArrayList<>());
+
+                joueurRepository.delete(joueur);
+            } else {
+                Organisateur organisateur = utilisateur.getOrganisateur();
+
+                for (Partie partie : organisateur.getPartiesCreees()) {
+                    for(Joueur participant : partie.getParticipants()) {
+                        participant.removePartie(partie);
+                    }
+
+                    partie.setParticipants(new ArrayList<>());
+                    partie.setCreateur(null);
+
+                    partieRepository.delete(partie);
+                }
+
+                organisateurRepository.delete(organisateur);
+            }
+
             utilisateurRepository.delete(utilisateur);
         }
 
