@@ -8,47 +8,52 @@
 <body>
     <div th:replace="~{/common/navbar.html}"></div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Tag</th>
-            <th>Lien emblème</th>
-            <th>Couleur</th>
-            <th>Chef</th>
-            <th>Modifier</th>
-            <th>Supprimer</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="guilde: ${guildes}">
-            <td th:text="${guilde.id}"></td>
-            <td th:text="${guilde.nom}"></td>
-            <td th:text="|[${guilde.tag}]|"></td>
-            <td th:style="'max-width: 300px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'"><a th:href="${guilde.lienEmbleme}" th:text="${guilde.lienEmbleme}"></a></td>
-            <td th:style="|background-color: ${guilde.couleurHex}|"></td>
-            <td>
-                <span th:each="membre : ${guilde.membres}">
-                    <span th:if="${membre.estChef}">
-                        <span th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
-                    </span>
-                </span>
-            </td>
-            <td>
-                <a th:href="@{/admin/guild-dashboard/edit-guild/{id}(id=${guilde.id})}" class="btn btn-primary">
-                    Éditer
-                </a>
-            </td>
-            <td>
-                <a th:href="@{/admin/guild-dashboard/delete-guild/{id}(id=${guilde.id})}" class="btn btn-primary">
-                    Supprimer
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Tag</th>
+                        <th>Lien emblème</th>
+                        <th>Couleur</th>
+                        <th>Chef</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="guilde: ${guildes}">
+                        <td th:text="${guilde.id}"></td>
+                        <td th:text="${guilde.nom}"></td>
+                        <td th:text="|[${guilde.tag}]|"></td>
+                        <td th:style="'max-width: 300px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'"><a th:href="${guilde.lienEmbleme}" th:text="${guilde.lienEmbleme}"></a></td>
+                        <td th:style="|background-color: ${guilde.couleurHex}|"></td>
+                        <td>
+                            <span th:each="membre : ${guilde.membres}">
+                                <span th:if="${membre.estChef}">
+                                    <span th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
+                                </span>
+                            </span>
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/guild-dashboard/edit-guild/{id}(id=${guilde.id})}" class="btn btn-primary">
+                                Éditer
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/guild-dashboard/delete-guild/{id}(id=${guilde.id})}" class="btn btn-primary">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <a href="/admin/guild-dashboard/new-guild" class="btn btn-primary">Créer une nouvelle guilde</a>
     </body>
