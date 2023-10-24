@@ -2,61 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <div th:replace="~{/common/bootstrap.html}"></div>
+  <div th:insert="~{/common/head.html}"></div>
   <title>Création d'un utilisateur - Valo Jungle Site</title>
 </head>
 <body>
-  <div th:replace="~{/common/navbar.html}"></div>
+  <div class="d-flex flex-column min-vh-100">
+    <div th:insert="~{/common/navbar.html}"></div>
 
-  <form method="POST">
-    <label>
-      Nom d'utilisateur :
-      <input type="text" name="username" required>
-    </label>,
+    <div class="flex-fill">
+      <form method="POST">
+        <label>
+          Nom d'utilisateur :
+          <input type="text" name="username" required>
+        </label>,
 
-    <label>
-      Mot de passe :
-      <input type="password" name="password" required>
-    </label>
+        <label>
+          Mot de passe :
+          <input type="password" name="password" required>
+        </label>
 
-    <label>
-      Rôle :
-      <select id ="roleSelect" name="role" required>
-        <option value="admin">Organisateur</option>
-        <option value="player">Joueur</option>
-      </select>
-    </label>
+        <label>
+          Rôle :
+          <select id ="roleSelect" name="role" required>
+            <option value="admin">Organisateur</option>
+            <option value="player">Joueur</option>
+          </select>
+        </label>
 
-    <div id="adminFields" style="display:none">
-      <!-- Champs additionnels pour l'organisateur -->
-      <label>
-        Nom d'utilisateur Discord :
-        <input type="text" name="discordUsername">
-      </label>
-      <label>
-        Adresse email :
-        <input type="email" name="email">
-      </label>
+        <div id="adminFields" style="display:none">
+          <!-- Champs additionnels pour l'organisateur -->
+          <label>
+            Nom d'utilisateur Discord :
+            <input type="text" name="discordUsername">
+          </label>
+          <label>
+            Adresse email :
+            <input type="email" name="email">
+          </label>
+        </div>
+
+        <div id="playerFields" style="display:none">
+          <!-- Champs additionnels pour le joueur -->
+          <label>
+            Nom :
+            <input type="text" name="nom">
+          </label>
+          <label>
+            Prénom :
+            <input type="text" name="prenom">
+          </label>
+          <label>
+            Pseudonyme :
+            <input type="text" name="pseudo">
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
     </div>
 
-    <div id="playerFields" style="display:none">
-      <!-- Champs additionnels pour le joueur -->
-      <label>
-        Nom :
-        <input type="text" name="nom">
-      </label>
-      <label>
-        Prénom :
-        <input type="text" name="prenom">
-      </label>
-      <label>
-        Pseudonyme :
-        <input type="text" name="pseudo">
-      </label>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
-  </form>
+    <div th:insert="~{/common/footer.html}"></div>
+  </div>
 
   <script>
     const roleSelect = document.getElementById('roleSelect');

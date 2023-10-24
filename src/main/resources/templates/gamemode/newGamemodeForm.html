@@ -2,29 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <div th:replace="~{/common/bootstrap.html}"></div>
+    <div th:insert="~{/common/head.html}"></div>
     <title>Création d'un mode de jeu - Valo Jungle Site</title>
 </head>
 <body>
-    <div th:replace="~{/common/navbar.html}"></div>
+    <div class="d-flex flex-column min-vh-100">
+        <div th:insert="~{/common/navbar.html}"></div>
 
-    <form method="POST">
-        <label>
-            Nom :
-            <input type="text" name="nom" required>
-        </label>
+        <div class="flex-fill">
+            <form method="POST">
+                <label>
+                    Nom :
+                    <input type="text" name="nom" required>
+                </label>
 
-        <label>
-            Description
-            <input type="text" name="description" required>
-        </label>
+                <label>
+                    Description
+                    <input type="text" name="description" required>
+                </label>
 
-        <label>
-            Lien GIF :
-            <input type="text" name="lienGIF" required>
-        </label>
+                <label>
+                    Lien GIF :
+                    <input type="text" name="lienGIF" required>
+                </label>
 
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    </form>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+
+        <div th:insert="~{/common/footer.html}"></div>
+    </div>
 </body>
 </html>

@@ -2,40 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <div th:replace="~{/common/bootstrap.html}"></div>
+    <div th:insert="~{/common/head.html}"></div>
     <title>Modification d'une partie - Valo Jungle Site</title>
 </head>
 <body>
-    <div th:replace="~{/common/navbar.html}"></div>
+    <div class="d-flex flex-column min-vh-100">
+        <div th:insert="~{/common/navbar.html}"></div>
 
-    <form method="POST">
-        <label>
-            Nombre de joueurs minimum :
-            <input type="number" name="nbJoueursMin" min="1" th:value="${partie.nbJoueursMin}" required>
-        </label>
+        <div class="flex-fill">
+            <form method="POST">
+                <label>
+                    Nombre de joueurs minimum :
+                    <input type="number" name="nbJoueursMin" min="1" th:value="${partie.nbJoueursMin}" required>
+                </label>
 
-        <label>
-            Nombre de joueurs maximum :
-            <input type="number" name="nbJoueursMax" min="1" th:value="${partie.nbJoueursMax}" required>
-        </label>
+                <label>
+                    Nombre de joueurs maximum :
+                    <input type="number" name="nbJoueursMax" min="1" th:value="${partie.nbJoueursMax}" required>
+                </label>
 
-        <label>
-            Date et heure de rendez-vous :
-            <input type="datetime-local" name="dateHeureRDV" th:value="${partie.dateHeureRDV}" required>
-        </label>
+                <label>
+                    Date et heure de rendez-vous :
+                    <input type="datetime-local" name="dateHeureRDV" th:value="${partie.dateHeureRDV}" required>
+                </label>
 
-        <label>
-            Mode de jeu :
-            <select name="modeDeJeu" required>
-                <option th:each="mode : ${modesDeJeu}"
-                        th:value="${mode.id}"
-                        th:text="${mode.nom}"
-                        th:selected="${mode.id == partie.modeDeJeu.id}"></option>
-            </select>
-        </label>
+                <label>
+                    Mode de jeu :
+                    <select name="modeDeJeu" required>
+                        <option th:each="mode : ${modesDeJeu}"
+                                th:value="${mode.id}"
+                                th:text="${mode.nom}"
+                                th:selected="${mode.id == partie.modeDeJeu.id}"></option>
+                    </select>
+                </label>
 
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    </form>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+
+        <div th:insert="~{/common/footer.html}"></div>
+    </div>
 
     <script>
         const nbJoueursMinInput = document.querySelector('input[name="nbJoueursMin"]');

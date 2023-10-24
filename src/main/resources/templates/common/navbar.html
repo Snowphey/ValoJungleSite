@@ -1,11 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Accueil</a>
+        <a class="navbar-brand" href="/">
+            <img src="/img/mcytech_logo.png" alt="logo mcytech" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+            MCy-Tech
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                </li>
+
                 <th:block th:if="not ${#authentication.getPrincipal().equals('anonymousUser')}">
                     <th:block th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}">
                         <li class="nav-item">
@@ -20,21 +27,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/player/guild">Guilde</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black">
-                                Documentation
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Loup garou UHC</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Taupe gun</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Fallen kingdom</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Profil</a>
-                        </li>
                     </th:block>
                 </th:block>
                 <div th:if="${#authentication.getPrincipal().equals('anonymousUser')}">
@@ -42,7 +34,7 @@
                     <a href="/login" class="btn btn-primary">Se connecter</a>
                 </div>
                 <div th:unless="${#authentication.getPrincipal().equals('anonymousUser')}">
-                    <a href="/logout" class="btn btn-primary">Se déconnecter</a>
+                    <a href="/logout" class="btn btn-danger">Se déconnecter</a>
                 </div>
             </ul>
         </div>

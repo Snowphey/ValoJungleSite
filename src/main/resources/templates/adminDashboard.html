@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <div th:replace="~{/common/bootstrap.html}"></div>
+    <div th:insert="~{/common/head.html}"></div>
     <title>Dashboard admin - Valo Jungle Site</title>
 </head>
 <body>
-    <div th:replace="~{/common/navbar.html}"></div>
+    <div class="d-flex flex-column min-vh-100">
+        <div th:insert="~{/common/navbar.html}"></div>
 
-    <a href="/admin/user-dashboard" class="btn btn-primary">Gérer les utilisateurs</a>
-    <a href="/admin/game-dashboard" class="btn btn-primary">Gérer les parties</a>
-    <a href="/admin/gamemode-dashboard" class="btn btn-primary">Gérer les modes de jeu</a>
-    <a href="/admin/guild-dashboard" class="btn btn-primary">Gérer les guildes</a>
+        <div class="flex-fill">
+            <a href="/admin/user-dashboard" class="btn btn-primary">Gérer les utilisateurs</a>
+            <a href="/admin/game-dashboard" class="btn btn-primary">Gérer les parties</a>
+            <a href="/admin/gamemode-dashboard" class="btn btn-primary">Gérer les modes de jeu</a>
+            <a href="/admin/guild-dashboard" class="btn btn-primary">Gérer les guildes</a>
+        </div>
+
+        <div th:insert="~{/common/footer.html}"></div>
+    </div>
 </body>
 </html>
