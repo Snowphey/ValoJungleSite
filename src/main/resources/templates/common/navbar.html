@@ -1,44 +1,51 @@
-<!-- CSS déjà implémenté dans les balises HTML -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/common/navbar.css"/>
+    </head>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <img src="/img/mcytech_logo.png" alt="logo mcytech" th:style="'width: 100px; height: 100px; object-fit: contain;'">
-            MCy-Tech
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Accueil</a>
-                </li>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary customNavbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/img/mcytech_logo.png" alt="logo mcytech" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+                    MCy-Tech
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                        </li>
 
-                <th:block th:if="not ${#authentication.getPrincipal().equals('anonymousUser')}">
-                    <th:block th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin">Dashboard</a>
-                        </li>
-                    </th:block>
+                        <th:block th:if="not ${#authentication.getPrincipal().equals('anonymousUser')}">
+                            <th:block th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/admin">Dashboard</a>
+                                </li>
+                            </th:block>
 
-                    <th:block th:unless="${#authorization.expression('hasRole(''ROLE_admin'')')}">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/player/join-game">Jouer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/player/guild">Guilde</a>
-                        </li>
-                    </th:block>
-                </th:block>
-                <div th:if="${#authentication.getPrincipal().equals('anonymousUser')}">
-                    <a href="/register" class="btn btn-primary">S'inscrire</a>
-                    <a href="/login" class="btn btn-primary">Se connecter</a>
+                            <th:block th:unless="${#authorization.expression('hasRole(''ROLE_admin'')')}">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/player/join-game">Jouer</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/player/guild">Guilde</a>
+                                </li>
+                            </th:block>
+                        </th:block>
+                        <div th:if="${#authentication.getPrincipal().equals('anonymousUser')}">
+                            <a href="/register" class="btn btn-primary customBoutons">S'inscrire</a>
+                            <a href="/login" class="btn btn-primary customBoutons">Se connecter</a>
+                        </div>
+                        <div th:unless="${#authentication.getPrincipal().equals('anonymousUser')}">
+                            <a href="/logout" class="btn btn-danger">Se déconnecter</a>
+                        </div>
+                    </ul>
                 </div>
-                <div th:unless="${#authentication.getPrincipal().equals('anonymousUser')}">
-                    <a href="/logout" class="btn btn-danger">Se déconnecter</a>
-                </div>
-            </ul>
-        </div>
-    </div>
-</nav>
+            </div>
+        </nav>
+    </body>
+</html>
