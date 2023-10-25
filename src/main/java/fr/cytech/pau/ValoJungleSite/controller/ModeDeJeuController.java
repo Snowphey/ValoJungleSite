@@ -9,11 +9,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,9 +23,20 @@ public class ModeDeJeuController {
     PartieRepository partieRepository;
 
     @GetMapping(path = "/admin/gamemode-dashboard")
-    public String gamemodeDashboard(Model model) {
-        List<ModeDeJeu> modesDeJeu = modeDeJeuRepository.findAll();
+    public String gamemodeDashboard(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<ModeDeJeu> modesDeJeu = new ArrayList<>();
+
+        if (search != null && !search.isEmpty()) {
+            // Recherche spécifiée, on utilise la méthode de recherche personnalisée
+            modesDeJeu = modeDeJeuRepository.searchGamemodes(search);
+            model.addAttribute("search", search);
+        } else {
+            // Aucune recherche spécifiée, on récupère tout
+            modesDeJeu = modeDeJeuRepository.findAll();
+        }
+
         model.addAttribute("modesDeJeu", modesDeJeu);
+
         return "gamemode/gamemodeDashboard";
     }
 

@@ -8,10 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +34,17 @@ public class UtilisateurController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping(path = "/admin/user-dashboard")
-    public String userDashboard(Model model) {
-        List<Utilisateur> utilisateurs = utilisateurRepository.findAll();
+    public String userDashboard(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+
+        if (search != null && !search.isEmpty()) {
+            // Recherche spécifiée, on utilise la méthode de recherche personnalisée
+            utilisateurs = utilisateurRepository.searchUsers(search);
+            model.addAttribute("search", search);
+        } else {
+            // Aucune recherche spécifiée, on récupère tout
+            utilisateurs = utilisateurRepository.findAll();
+        }
 
         model.addAttribute("utilisateurs", utilisateurs);
 

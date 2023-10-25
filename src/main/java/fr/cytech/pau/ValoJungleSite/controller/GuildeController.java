@@ -30,9 +30,20 @@ public class GuildeController {
     UtilisateurRepository utilisateurRepository;
 
     @GetMapping(path = "/admin/guild-dashboard")
-    public String guildDashboard(Model model) {
-        List<Guilde> guildes = guildeRepository.findAll();
+    public String guildDashboard(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<Guilde> guildes = new ArrayList<>();
+
+        if (search != null && !search.isEmpty()) {
+            // Recherche spécifiée, on utilise la méthode de recherche personnalisée
+            guildes = guildeRepository.searchGuilds(search);
+            model.addAttribute("search", search);
+        } else {
+            // Aucune recherche spécifiée, on récupère tout
+            guildes = guildeRepository.findAll();
+        }
+
         model.addAttribute("guildes", guildes);
+
         return "guild/guildDashboard";
     }
 

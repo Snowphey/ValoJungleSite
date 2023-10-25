@@ -13,6 +13,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        <form class="d-inline-flex mb-2">
+                            <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                        </form>
+
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
