@@ -9,8 +9,7 @@
   <div class="d-flex flex-column min-vh-100">
     <div th:insert="~{/common/navbar.html}"></div>
 
-    <div class="flex-fill text-center">
-
+    <div class="flex-fill text-center contenu-principal">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-4">
@@ -40,7 +39,6 @@
                   </div>
 
                   <a href="/player/leave-guild" th:text="${estChef ? 'Dissoudre votre guilde' : 'Quitter votre guilde'}" class="btn btn-primary"></a>
-
                 </div>
               </div>
             </div>
