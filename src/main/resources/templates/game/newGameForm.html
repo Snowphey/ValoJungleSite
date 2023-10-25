@@ -9,32 +9,46 @@
     <div class="d-flex flex-column min-vh-100">
         <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="flex-fill">
-            <form method="POST">
-                <label>
-                    Nombre de joueurs minimum :
-                    <input type="number" name="nbJoueursMin" min="1" required>
-                </label>
+        <div class="container-fluid text-center flex-fill">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center">
+                        Créer une partie
+                    </h3>
+                    <form role="form" method="POST">
+                        <div class="form-group mb-2">
+                            <label>
+                                Nombre de joueurs minimum
+                                <input class="form-control" type="number" name="nbJoueursMin" min="1" required>
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>
+                                Nombre de joueurs maximum
+                                <input class="form-control" type="number" name="nbJoueursMax" min="1" disabled required>
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>
+                                Date et heure de rendez-vous
+                                <input class="form-control" type="datetime-local" name="dateHeureRDV" required>
+                            </label>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>
+                                Mode de jeu
+                                <select class="form-select" name="modeDeJeu" required>
+                                    <option th:each="mode : ${modesDeJeu}" th:value="${mode.id}" th:text="${mode.nom}"></option>
+                                </select>
+                            </label>
+                        </div>
 
-                <label>
-                    Nombre de joueurs maximum :
-                    <input type="number" name="nbJoueursMax" min="1" disabled required>
-                </label>
-
-                <label>
-                    Date et heure de rendez-vous :
-                    <input type="datetime-local" name="dateHeureRDV" required>
-                </label>
-
-                <label>
-                    Mode de jeu :
-                    <select name="modeDeJeu" required>
-                        <option th:each="mode : ${modesDeJeu}" th:value="${mode.id}" th:text="${mode.nom}"></option>
-                    </select>
-                </label>
-
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-            </form>
+                        <button type="submit" class="btn btn-primary mt-3">
+                            Créer
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div th:insert="~{/common/footer.html}"></div>

@@ -9,56 +9,79 @@
   <div class="d-flex flex-column min-vh-100">
     <div th:insert="~{/common/navbar.html}"></div>
 
-    <div class="flex-fill">
-      <form method="POST">
-        <label>
-          Nom d'utilisateur :
-          <input type="text" name="username" required>
-        </label>,
+    <div class="container-fluid text-center flex-fill">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center">
+            Créer un utilisateur
+          </h3>
+          <form role="form" method="POST">
+            <div class="form-group mb-2">
+              <label>
+                Nom d'utilisateur
+                <input class="form-control" type="text" name="username" required>
+              </label>
+            </div>
+            <div class="form-group mb-2">
+              <label>
+                Mot de passe
+                <input class="form-control" type="password" name="password" required>
+              </label>
+            </div>
+            <div class="form-group mb-2">
+              <label>
+                Rôle
+                <select class="form-select" id="roleSelect" name="role" required>
+                  <option value="admin">Organisateur</option>
+                  <option value="player">Joueur</option>
+                </select>
+              </label>
+            </div>
 
-        <label>
-          Mot de passe :
-          <input type="password" name="password" required>
-        </label>
+            <div id="adminFields" style="display:none">
+              <!-- Champs additionnels pour l'organisateur -->
+              <div class="form-group mb-2">
+                <label>
+                  Nom d'utilisateur Discord
+                  <input class="form-control" type="text" name="discordUsername">
+                </label>
+              </div>
+              <div class="form-group mb-2">
+                <label>
+                  Adresse email
+                  <input class="form-control" type="email" name="email" placeholder="nom@example.com">
+                </label>
+              </div>
+            </div>
 
-        <label>
-          Rôle :
-          <select id ="roleSelect" name="role" required>
-            <option value="admin">Organisateur</option>
-            <option value="player">Joueur</option>
-          </select>
-        </label>
+            <div id="playerFields" style="display:none">
+              <!-- Champs additionnels pour le joueur -->
+              <div class="form-group mb-2">
+                <label>
+                  Nom
+                  <input class="form-control" type="text" name="nom">
+                </label>
+              </div>
+              <div class="form-group mb-2">
+                <label>
+                  Prénom
+                  <input class="form-control" type="text" name="prenom">
+                </label>
+              </div>
+              <div class="form-group mb-2">
+                <label>
+                  Pseudonyme Minecraft
+                  <input class="form-control" type="text" name="pseudo">
+                </label>
+              </div>
+            </div>
 
-        <div id="adminFields" style="display:none">
-          <!-- Champs additionnels pour l'organisateur -->
-          <label>
-            Nom d'utilisateur Discord :
-            <input type="text" name="discordUsername">
-          </label>
-          <label>
-            Adresse email :
-            <input type="email" name="email">
-          </label>
+            <button type="submit" class="btn btn-primary mt-3">
+              Créer
+            </button>
+          </form>
         </div>
-
-        <div id="playerFields" style="display:none">
-          <!-- Champs additionnels pour le joueur -->
-          <label>
-            Nom :
-            <input type="text" name="nom">
-          </label>
-          <label>
-            Prénom :
-            <input type="text" name="prenom">
-          </label>
-          <label>
-            Pseudonyme :
-            <input type="text" name="pseudo">
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-      </form>
+      </div>
     </div>
 
     <div th:insert="~{/common/footer.html}"></div>

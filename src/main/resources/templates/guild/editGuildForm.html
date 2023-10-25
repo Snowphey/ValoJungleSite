@@ -16,38 +16,33 @@
                         Modifier votre guilde
                     </h3>
                     <form role="form" method="POST">
-                        <div class="form-group">
-
+                        <div class="form-group mb-2">
                             <label>
                                 Nom
                                 <input class="form-control" type="text" name="nom" th:value="${guilde.nom}" required>
                             </label>
                         </div>
-                        <div class="form-group">
-
+                        <div class="form-group mb-2">
                             <label>
                                 Tag (ex: [VJL]) en trois lettres
                                 <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="tag" minlength="3" maxlength="3" size="3" th:value="${guilde.tag}" required>
                             </label>
                         </div>
-
-                        <div class="form-group">
-
+                        <div class="form-group mb-2">
                             <label>
                                 Lien de l'emblème
                                 <input class="form-control" type="text" name="lienEmbleme" th:value="${guilde.lienEmbleme}" required>
                             </label>
                         </div>
-                        <div class="form-group">
-
+                        <div class="form-group mb-2">
                             <label>
                                 Couleur de la guilde
                                 <input class="form-control" type="color" name="couleurHex" th:value="${guilde.couleurHex}" required>
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">
-                            Modifier
+                        <button type="submit" class="btn btn-primary mt-3">
+                            Enregistrer
                         </button>
                     </form>
                 </div>
