@@ -10,10 +10,22 @@
         <div th:insert="~{/common/navbar.html}"></div>
 
         <div class="flex-fill">
-            <a href="/admin/user-dashboard" class="btn btn-primary">Gérer les utilisateurs</a>
-            <a href="/admin/game-dashboard" class="btn btn-primary">Gérer les parties</a>
-            <a href="/admin/gamemode-dashboard" class="btn btn-primary">Gérer les modes de jeu</a>
-            <a href="/admin/guild-dashboard" class="btn btn-primary">Gérer les guildes</a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="/admin/user-dashboard" class="btn btn-primary btn-lg w-100">Gérer les utilisateurs</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/game-dashboard" class="btn btn-primary btn-lg w-100">Gérer les parties</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/gamemode-dashboard" class="btn btn-primary btn-lg w-100">Gérer les modes de jeu</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/admin/guild-dashboard" class="btn btn-primary btn-lg w-100">Gérer les guildes</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div th:insert="~{/common/footer.html}"></div>
