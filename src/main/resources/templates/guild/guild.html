@@ -9,26 +9,49 @@
   <div class="d-flex flex-column min-vh-100">
     <div th:insert="~{/common/navbar.html}"></div>
 
-    <div class="flex-fill">
-      <div th:if="${guilde} != null">
-        Votre guilde :
-        <div th:text="|[${guilde.tag}] ${guilde.nom}|"></div>
+    <div class="flex-fill text-center">
 
-        Liste des membres :
-        <ul>
-          <li th:each="membre : ${guilde.membres}">
-            <span th:style="${membre.estChef} ? 'color: red'" th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
-          </li>
-        </ul>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <div th:if="${guilde} != null">
+              <h2>Votre guilde :</h2>
 
-        <div th:if="${estChef}">
-          <a th:href="@{/player/edit-guild/{id}(id=${guilde.id})}">Modifier votre guilde</a>
+              <div class="card mb-4" th:style="'border: 2px solid; border-color: ' + ${guilde.couleurHex}">
+                <div class="card-body">
+                  <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
+                  <div class="text-center">
+                    <img th:src="${guilde.lienEmbleme}" class="card-img-top" alt="Emblème de la guilde" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+                  </div>
+                  Liste des membres :
+                  <div class="d-flex justify-content-center">
+                    <ul>
+                      <li th:each="membre : ${guilde.membres}">
+                        <span th:style="${membre.estChef} ? 'color: red'" th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div th:if="${estChef}" class="mb-2">
+                    <a th:href="@{/player/edit-guild/{id}(id=${guilde.id})}" class="btn btn-primary">Modifier votre guilde</a>
+                  </div>
+
+                  <a href="/player/leave-guild" th:text="${estChef ? 'Dissoudre votre guilde' : 'Quitter votre guilde'}" class="btn btn-primary"></a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+          </div>
         </div>
-
-        <a href="/player/leave-guild" th:text="${estChef ? 'Dissoudre votre guilde' : 'Quitter votre guilde'}"></a>
       </div>
+
       <div th:unless="${guilde} != null">
-        Vous n'avez encore créé/rejoint aucune guilde !
+        <h3>Vous n'avez encore créé/rejoint aucune guilde !</h3>
 
         <a href="/player/new-guild" class="btn btn-primary">Créer une guilde</a>
         <a href="/player/join-guild" class="btn btn-primary">Rejoindre une guilde</a>
