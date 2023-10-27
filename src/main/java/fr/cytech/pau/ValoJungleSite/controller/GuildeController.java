@@ -276,7 +276,7 @@ public class GuildeController {
             }
         }
 
-        return "redirect:/";
+        return "redirect:/player/guild";
     }
 
     @Transactional
@@ -306,6 +306,6 @@ public class GuildeController {
             }
         }
 
-        return "redirect:/";
+        return "redirect:/player/join-guild";
     }
 }
