@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -177,6 +178,9 @@ public class PartieController {
                 partiesOuvertesEtRejointes.add(partieRejointe);
             }
         }
+
+        // On trie les parties par dateHeureRDV
+        partiesOuvertesEtRejointes.sort(Comparator.comparing(Partie::getDateHeureRDV));
 
         model.addAttribute("parties", partiesOuvertesEtRejointes);
 
