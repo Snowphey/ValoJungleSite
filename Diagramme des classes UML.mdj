@@ -2373,9 +2373,9 @@
 										"$ref": "AAAAAAGLTEZ9JmxwpUc="
 									},
 									"font": "Arial;13;0",
-									"left": 268,
+									"left": 256,
 									"top": 501,
-									"width": 37.2099609375,
+									"width": 61.7880859375,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2383,7 +2383,7 @@
 										"$ref": "AAAAAAGLTEZ9Jmx0738="
 									},
 									"edgePosition": 1,
-									"text": "+créer"
+									"text": "+organiser"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3452,7 +3452,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGLTEN4+mDrkZE="
 							},
-							"name": "créer",
+							"name": "organiser",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAGLTEZ9Jmxxe5g=",
