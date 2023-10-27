@@ -47,6 +47,15 @@
                                 </select>
                             </label>
                         </div>
+                        <div class="form-group mb-2">
+                            <label>
+                                Inscriptions ouvertes ?
+                                <select class="form-select" name="inscriptionsOuvertes" required>
+                                    <option value="true" th:selected="${partie.isInscriptionsOuvertes()}">Oui</option>
+                                    <option value="false" th:selected="not ${partie.isInscriptionsOuvertes()}">Non</option>
+                                </select>
+                            </label>
+                        </div>
 
                         <button type="submit" class="btn btn-primary mt-3">
                             Enregistrer
