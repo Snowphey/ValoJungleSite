@@ -23,7 +23,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nom d'utilisateur</th>
-                                <th>Mot de passe</th>
                                 <th>Rôle</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
@@ -38,7 +37,6 @@
                             <tr th:each="utilisateur: ${utilisateurs}">
                                 <td th:text="${utilisateur.id}"></td>
                                 <td th:text="${utilisateur.username}"></td>
-                                <td th:text="${utilisateur.password}"></td>
                                 <td th:text="${utilisateur.role}"></td>
                                 <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.nom} : ''"></td>
                                 <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.prenom} : ''"></td>
