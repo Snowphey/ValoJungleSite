@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <title>Inscription - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <title>Inscription - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="container-fluid text-center flex-fill contenu-principal">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>
-                        Inscription
-                    </h3>
-                    <form role="form" method="POST">
-                        <div class="form-group mb-2">
-                            <label>
-                                Nom d'utilisateur
-                                <input class="form-control" type="text" name="username" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Mot de passe
-                                <input class="form-control" type="password" name="password" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Nom
-                                <input class="form-control" type="text" name="nom" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Prénom
-                                <input class="form-control" type="text" name="prenom" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Pseudonyme Minecraft
-                                <input class="form-control" type="text" name="pseudo" required>
-                            </label>
-                        </div>
+            <div class="container-fluid text-center flex-fill contenu-principal">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>
+                            Inscription
+                        </h3>
+                        <form role="form" method="POST">
+                            <div class="form-group mb-2">
+                                <label>
+                                    Nom d'utilisateur
+                                    <input class="form-control" type="text" name="username" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Mot de passe
+                                    <input class="form-control" type="password" name="password" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Nom
+                                    <input class="form-control" type="text" name="nom" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Prénom
+                                    <input class="form-control" type="text" name="prenom" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Pseudonyme Minecraft
+                                    <input class="form-control" type="text" name="pseudo" required>
+                                </label>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">
-                            Continuer
-                        </button>
-                    </form>
+                            <button type="submit" class="btn btn-primary mt-3">
+                                Continuer
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+            <div th:insert="~{/common/footer.html}"></div>
+        </div>
+    </body>
 </html>

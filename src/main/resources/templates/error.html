@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Erreur - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Erreur - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="container mt-5 flex-fill contenu-principal">
-            <div class="alert alert-danger">
-                <h4 class="alert-heading" th:text="|Erreur ${status} (${error}) !|"></h4>
-                <p>Une erreur s'est produite lors du traitement de votre demande.</p>
-                <p>Nous nous excusons pour la gêne occasionnée.</p>
+            <div class="container mt-5 flex-fill contenu-principal">
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading" th:text="|Erreur ${status} (${error}) !|"></h4>
+                    <p>Une erreur s'est produite lors du traitement de votre demande.</p>
+                    <p>Nous nous excusons pour la gêne occasionnée.</p>
+                </div>
+                <a href="/" class="btn btn-primary">Retour à la page d'accueil</a>
             </div>
-            <a href="/" class="btn btn-primary">Retour à la page d'accueil</a>
+            <div th:insert="~{/common/footer.html}"></div>
         </div>
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+    </body>
 </html>

@@ -3,3 +3,66 @@
     padding: 20px 0 20px 0;
     color: #f2f2f2;
 }
+
+.fontBlanc {
+    color: #f2f2f2 !important;
+}
+
+.boutonVert {
+    background-color: #97c767 !important;
+    border-width: 2px !important;
+    border-color: #5a9a30 !important;
+    color: #f2f2f2 !important;
+    margin: 3px !important;
+}
+
+.boutonVert2 {
+    background-color: #72b147 !important;
+    border-width: 3px !important;
+    border-color: #5a9a30 !important;
+    color: #f2f2f2 !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.boutonVert2:hover {
+    transform : scale(1.1);
+}
+
+.boutonVert3 {
+    background-image: url("https://i.etsystatic.com/10800838/r/il/fb4f68/2825858925/il_794xN.2825858925_s5dq.jpg");
+    background-size: 185px;
+    border-width: 3px !important;
+    border-color: #72b147 !important;
+    color: #3c3c3c !important;
+    margin: 3px !important;
+}
+
+.boutonBleu {
+    background-image: url("https://media.forgecdn.net/avatars/205/800/636951629412068450.jpeg");
+    background-size: 105px;
+    border-width: 3px !important;
+    border-color: #0000eb !important;
+    color: #f2f2f2 !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.boutonBleu:hover {
+    transform : scale(1.1);
+}
+
+.boutonOrange {
+    background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/665/13914790-pack-icon_xl.webp");
+    background-size: 370px;
+    border-width: 3px !important;
+    /*border-color: #ff3700 !important;*/
+    border-color: #faeb73 !important;
+    color: #f2f2f2 !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.boutonOrange:hover {
+    transform : scale(1.1);
+}

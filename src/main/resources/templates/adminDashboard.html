@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <title>Dashboard admin - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <title>Dashboard admin - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="flex-fill contenu-principal">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="/admin/user-dashboard" class="btn btn-primary btn-lg w-100">Gérer les utilisateurs</a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="/admin/game-dashboard" class="btn btn-primary btn-lg w-100">Gérer les parties</a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="/admin/gamemode-dashboard" class="btn btn-primary btn-lg w-100">Gérer les modes de jeu</a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="/admin/guild-dashboard" class="btn btn-primary btn-lg w-100">Gérer les guildes</a>
+            <div class="flex-fill contenu-principal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="/admin/user-dashboard" class="btn btn-primary btn-lg w-100 boutonVert2">Gérer les utilisateurs</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/admin/game-dashboard" class="btn btn-primary btn-lg w-100 boutonVert3">Gérer les parties</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/admin/gamemode-dashboard" class="btn btn-primary btn-lg w-100 boutonBleu">Gérer les modes de jeu</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/admin/guild-dashboard" class="btn btn-primary btn-lg w-100 boutonOrange">Gérer les guildes</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+            <div th:insert="~{/common/footer.html}"></div>
+        </div>
+    </body>
 </html>
