@@ -1,5 +1,15 @@
 /* Boutons */
 
+.boutonBlancFooter {
+    background-image: url("../img/Bloc_Nuage.jpeg");
+    background-size: 98px;
+    border-width: 3px !important;
+    border-color: #b0b0b0 !important;
+    color: #8c8c8c !important;
+    /* Augmente la taille du footer, à gérer */
+    padding: 12px !important;
+}
+
 .boutonBlanc {
     background-image: url("../img/Bloc_Nuage.jpeg");
     background-size: 210px;
@@ -36,6 +46,15 @@
 }
 
 
+.boutonGrisFooter {
+    background-image: url("../img/Bloc_Pierre.jpeg");
+    background-size: 98px;
+    border-width: 3px !important;
+    border-color: #5d5d5d !important;
+    color: #f2f2f2 !important;
+    padding: 12px !important;
+}
+
 .boutonGris {
     background-image: url("../img/Bloc_Pierre.jpeg");
     background-size: 98px;
@@ -48,16 +67,6 @@
 
 .boutonGris:hover {
     transform : scale(1.1);
-}
-
-.boutonGrisFooter {
-    background-image: url("../img/Bloc_Pierre.jpeg");
-    background-size: 98px;
-    border-width: 3px !important;
-    border-color: #5d5d5d !important;
-    color: #f2f2f2 !important;
-    /* Augmente la taille du footer */
-    padding: 12px !important;
 }
 
 
