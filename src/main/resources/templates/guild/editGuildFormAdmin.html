@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <title>Modification d'une guilde - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <title>Modification d'une guilde - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="container-fluid text-center flex-fill contenu-principal">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-center">
-                        Modifier une guilde
-                    </h3>
-                    <form role="form" method="POST">
-                        <div class="form-group mb-2">
-                            <label>
-                                Nom
-                                <input class="form-control" type="text" name="nom" th:value="${guilde.nom}" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Tag (ex: [VJL]) en trois lettres
-                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="tag" minlength="3" maxlength="3" size="3" th:value="${guilde.tag}" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Lien de l'emblème
-                                <input class="form-control" type="text" name="lienEmbleme" th:value="${guilde.lienEmbleme}" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Couleur de la guilde
-                                <input class="form-control" type="color" name="couleurHex" th:value="${guilde.couleurHex}" required>
-                            </label>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>
-                                Chef de la guilde
-                                <select class="form-select" name="chef" required>
-                                    <option th:each="joueurSansGuildeEtChef : ${joueursSansGuildeEtChef}" th:selected="${joueurSansGuildeEtChef.isEstChef()}" th:value="${joueurSansGuildeEtChef.id}" th:text="|${joueurSansGuildeEtChef.prenom} ${joueurSansGuildeEtChef.nom} (${joueurSansGuildeEtChef.pseudo})|"></option>
-                                </select>
-                            </label>
-                        </div>
+            <div class="container-fluid text-center flex-fill contenu-principal">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center">
+                            Modifier une guilde
+                        </h3>
+                        <form role="form" method="POST">
+                            <div class="form-group mb-2">
+                                <label>
+                                    Nom
+                                    <input class="form-control" type="text" name="nom" th:value="${guilde.nom}" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Tag (ex: [VJL]) en trois lettres
+                                    <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="tag" minlength="3" maxlength="3" size="3" th:value="${guilde.tag}" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Lien de l'emblème
+                                    <input class="form-control" type="text" name="lienEmbleme" th:value="${guilde.lienEmbleme}" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Couleur de la guilde
+                                    <input class="form-control" type="color" name="couleurHex" th:value="${guilde.couleurHex}" required>
+                                </label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>
+                                    Chef de la guilde
+                                    <select class="form-select" name="chef" required>
+                                        <option th:each="joueurSansGuildeEtChef : ${joueursSansGuildeEtChef}" th:selected="${joueurSansGuildeEtChef.isEstChef()}" th:value="${joueurSansGuildeEtChef.id}" th:text="|${joueurSansGuildeEtChef.prenom} ${joueurSansGuildeEtChef.nom} (${joueurSansGuildeEtChef.pseudo})|"></option>
+                                    </select>
+                                </label>
+                            </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">
-                            Enregistrer
-                        </button>
-                    </form>
+                            <button type="submit" class="btn btn-primary boutonBleu">
+                                Enregistrer
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+            <div th:insert="~{/common/footer.html}"></div>
+        </div>
+    </body>
 </html>

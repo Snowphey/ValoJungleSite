@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <title>Gestion des utilisateurs - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <title>Gestion des utilisateurs - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="flex-fill contenu-principal">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="d-inline-flex mb-2">
-                            <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
-                            <button class="btn btn-success" type="submit">Rechercher</button>
-                        </form>
+            <div class="flex-fill contenu-principal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="d-inline-flex mb-2">
+                                <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
+                                <button class="btn btn-success boutonGris" type="submit">Rechercher</button>
+                            </form>
 
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom d'utilisateur</th>
-                                <th>Rôle</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Pseudonyme</th>
-                                <th>Nom d'utilisateur Discord</th>
-                                <th>Adresse email</th>
-                                <th>Modifier</th>
-                                <th>Supprimer</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="utilisateur: ${utilisateurs}">
-                                <td th:text="${utilisateur.id}"></td>
-                                <td th:text="${utilisateur.username}"></td>
-                                <td th:text="${utilisateur.role}"></td>
-                                <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.nom} : ''"></td>
-                                <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.prenom} : ''"></td>
-                                <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.pseudo} : ''"></td>
-                                <td th:text="${utilisateur.role == 'admin'} ? ${utilisateur.organisateur.discordUsername} : ''"></td>
-                                <td th:text="${utilisateur.role == 'admin'} ? ${utilisateur.organisateur.email} : ''"></td>
-                                <td>
-                                    <a th:href="@{/admin/user-dashboard/edit-user/{id}(id=${utilisateur.id})}" class="btn btn-primary">
-                                        Éditer
-                                    </a>
-                                </td>
-                                <td>
-                                    <a th:href="@{/admin/user-dashboard/delete-user/{id}(id=${utilisateur.id})}" class="btn btn-primary">
-                                        Supprimer
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <table>     <!-- Suppression de class="table table-bordered table-hover" -->
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom d'utilisateur</th>
+                                    <th>Rôle</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Pseudonyme</th>
+                                    <th>Nom d'utilisateur Discord</th>
+                                    <th>Adresse email</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="utilisateur: ${utilisateurs}">
+                                    <td th:text="${utilisateur.id}"></td>
+                                    <td th:text="${utilisateur.username}"></td>
+                                    <td th:text="${utilisateur.role}"></td>
+                                    <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.nom} : ''"></td>
+                                    <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.prenom} : ''"></td>
+                                    <td th:text="${utilisateur.role == 'player'} ? ${utilisateur.joueur.pseudo} : ''"></td>
+                                    <td th:text="${utilisateur.role == 'admin'} ? ${utilisateur.organisateur.discordUsername} : ''"></td>
+                                    <td th:text="${utilisateur.role == 'admin'} ? ${utilisateur.organisateur.email} : ''"></td>
+                                    <td>
+                                        <a th:href="@{/admin/user-dashboard/edit-user/{id}(id=${utilisateur.id})}" class="btn  boutonBleu">
+                                            Éditer
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/admin/user-dashboard/delete-user/{id}(id=${utilisateur.id})}" class="btn btn-primary boutonOrange">
+                                            Supprimer
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                        <a href="/admin/user-dashboard/new-user" class="btn btn-primary">Créer un nouvel utilisateur</a>
+                            <a href="/admin/user-dashboard/new-user" class="btn btn-primary boutonBleu">Créer un nouvel utilisateur</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+            <div th:insert="~{/common/footer.html}"></div>
+        </div>
+    </body>
 </html>

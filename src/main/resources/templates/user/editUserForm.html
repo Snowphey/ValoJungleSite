@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <div th:insert="~{/common/head.html}"></div>
-  <title>Modification d'un utilisateur - Valo Jungle Site</title>
-</head>
-<body>
-  <div class="d-flex flex-column min-vh-100">
-    <div th:insert="~{/common/navbar.html}"></div>
+  <head>
+    <meta charset="UTF-8">
+    <div th:insert="~{/common/head.html}"></div>
+    <title>Modification d'un utilisateur - Valo Jungle Site</title>
+  </head>
+  <body>
+    <div class="d-flex flex-column min-vh-100">
+      <div th:insert="~{/common/navbar.html}"></div>
 
-    <div class="container-fluid text-center flex-fill contenu-principal">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="text-center">
-            Modifier un utilisateur
-          </h3>
-          <form role="form" method="POST">
-            <div class="form-group mb-2">
-              <label>
-                Nom d'utilisateur
-                <input class="form-control" type="text" name="username" th:value="${utilisateur.username}" required>
-              </label>
-            </div>
-            <div class="form-group mb-2">
-              <label>
-                Nouveau mot de passe :
-                <input class="form-control" type="password" name="password">
-              </label>
-            </div>
+      <div class="container-fluid text-center flex-fill contenu-principal">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="text-center">
+              Modifier un utilisateur
+            </h3>
+            <form role="form" method="POST">
+              <div class="form-group mb-2">
+                <label>
+                  Nom d'utilisateur
+                  <input class="form-control" type="text" name="username" th:value="${utilisateur.username}" required>
+                </label>
+              </div>
+              <div class="form-group mb-2">
+                <label>
+                  Nouveau mot de passe :
+                  <input class="form-control" type="password" name="password">
+                </label>
+              </div>
 
-            <div id="adminFields" th:if="${utilisateur.role.equals('admin')}">
-              <!-- Champs additionnels pour l'organisateur -->
-              <div class="form-group mb-2">
-                <label>
-                  Nom d'utilisateur Discord
-                  <input class="form-control" type="text" name="discordUsername" th:value="${utilisateur.organisateur?.discordUsername}">
-                </label>
+              <div id="adminFields" th:if="${utilisateur.role.equals('admin')}">
+                <!-- Champs additionnels pour l'organisateur -->
+                <div class="form-group mb-2">
+                  <label>
+                    Nom d'utilisateur Discord
+                    <input class="form-control" type="text" name="discordUsername" th:value="${utilisateur.organisateur?.discordUsername}">
+                  </label>
+                </div>
+                <div class="form-group mb-2">
+                  <label>
+                    Adresse email
+                    <input class="form-control" type="email" name="email" placeholder="nom@example.com" th:value="${utilisateur.organisateur?.email}">
+                  </label>
+                </div>
               </div>
-              <div class="form-group mb-2">
-                <label>
-                  Adresse email
-                  <input class="form-control" type="email" name="email" placeholder="nom@example.com" th:value="${utilisateur.organisateur?.email}">
-                </label>
-              </div>
-            </div>
 
-            <div id="playerFields" th:if="${utilisateur.role.equals('player')}">
-              <!-- Champs additionnels pour le joueur -->
-              <div class="form-group mb-2">
-                <label>
-                  Nom
-                  <input class="form-control" type="text" name="nom" th:value="${utilisateur.joueur?.nom}">
-                </label>
+              <div id="playerFields" th:if="${utilisateur.role.equals('player')}">
+                <!-- Champs additionnels pour le joueur -->
+                <div class="form-group mb-2">
+                  <label>
+                    Nom
+                    <input class="form-control" type="text" name="nom" th:value="${utilisateur.joueur?.nom}">
+                  </label>
+                </div>
+                <div class="form-group mb-2">
+                  <label>
+                    Prénom
+                    <input class="form-control" type="text" name="prenom" th:value="${utilisateur.joueur?.prenom}">
+                  </label>
+                </div>
+                <div class="form-group mb-2">
+                  <label>
+                    Pseudonyme Minecraft
+                    <input class="form-control" type="text" name="pseudo" th:value="${utilisateur.joueur?.pseudo}">
+                  </label>
+                </div>
               </div>
-              <div class="form-group mb-2">
-                <label>
-                  Prénom
-                  <input class="form-control" type="text" name="prenom" th:value="${utilisateur.joueur?.prenom}">
-                </label>
-              </div>
-              <div class="form-group mb-2">
-                <label>
-                  Pseudonyme Minecraft
-                  <input class="form-control" type="text" name="pseudo" th:value="${utilisateur.joueur?.pseudo}">
-                </label>
-              </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary mt-3">
-              Enregistrer
-            </button>
-          </form>
+              <button type="submit" class="btn btn-primary boutonBleu">
+                Enregistrer
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div th:insert="~{/common/footer.html}"></div>
-  </div>
-</body>
+      <div th:insert="~{/common/footer.html}"></div>
+    </div>
+  </body>
 </html>

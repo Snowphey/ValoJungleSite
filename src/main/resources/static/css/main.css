@@ -1,5 +1,26 @@
 /* Boutons */
 
+.boutonBlanc {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhwDVphA0uqwTslTBpD47IKt31MVlN4bzrBnKoU5DGSXpE6nt3WUYMD4CQFJBh3xa4y9A&usqp=CAU");
+    background-size: 210px;
+    border-width: 3px !important;
+    border-color: #b0b0b0 !important;
+    height: 42px !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.boutonBlanc:hover {
+    transform : scale(1.1);
+}
+
+.contenuBoutonBlanc {
+    border-width: 0 !important;
+    color: #8c8c8c !important;
+    padding: 0 !important;
+}
+
+
 .boutonBleu {
     background-image: url("https://media.forgecdn.net/avatars/205/800/636951629412068450.jpeg");
     background-size: 105px;
@@ -17,7 +38,7 @@
 
 .boutonGris {
     background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/363/14104498-stone_xl.webp");
-    background-size: 106px;
+    background-size: 98px;
     border-width: 3px !important;
     border-color: #5d5d5d !important;
     color: #f2f2f2 !important;
@@ -31,15 +52,11 @@
 
 
 .boutonOrange {
-    /*background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/665/13914790-pack-icon_xl.webp");*/
     background-image: url("https://art.pixilart.com/sr247241d0c6220.png");
-    /*background-size: 370px;*/
-    background-size: 200px;
+    background-size: 187px;
     border-width: 3px !important;
     border-color: #ff4800 !important;
-    /*border-color: #e8823c !important;*/
-    /*color: #f2f2f2 !important;*/
-    color: #3c3c3c !important;
+    color: #8b4800 !important;
     margin: 3px !important;
     transition : transform 0.5s;
 }
@@ -50,12 +67,45 @@
 
 
 
+/* Cartes */
+
+.carteGrise {
+    background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/363/14104498-stone_xl.webp");
+    background-size: 388px;
+    border-width: 3px !important;
+    border-color: #5d5d5d !important;
+    color: #f2f2f2 !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.carteGrise:hover {
+    transform : scale(1.1);
+}
+
+
+.carteNoire {
+    background-color: #3c3c3c !important;
+    border-width: 3px !important;
+    color: #f2f2f2 !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.carteNoire:hover {
+    transform : scale(1.1);
+}
+
+
+
 /* Fond d'écran */
 
 .contenu-principal {
     background-color: #3c3c3c;
-    padding: 20px 0 20px 0;
     color: #f2f2f2;
+    margin: 0;
+    padding: 20px 20px;
+    width: 100% !important;
 }
 
 
@@ -75,12 +125,27 @@
 
 
 
+/* Tableaux */
+
+table {
+    background-color: #3c3c3c !important;
+    color: #f2f2f2 !important;
+    width: 90% !important;
+}
+
+
+td {
+    padding: 12px;
+}
+
+th {
+    padding: 12px;
+}
+
+
+
 /* Autres */
 
 .fontBlanc {
     color: #f2f2f2 !important;
-}
-
-.zeroPadding {
-    padding: 0px 0px;
 }

@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <title>Gestion des modes de jeu - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <title>Gestion des modes de jeu - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="flex-fill contenu-principal">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="d-inline-flex mb-2">
-                            <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
-                            <button class="btn btn-success" type="submit">Rechercher</button>
-                        </form>
+            <div class="flex-fill contenu-principal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="d-inline-flex mb-2">
+                                <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
+                                <button class="btn btn-success boutonGris" type="submit">Rechercher</button>
+                            </form>
 
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Description</th>
-                                <th>Lien GIF</th>
-                                <th>Modifier</th>
-                                <th>Supprimer</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="modeDeJeu: ${modesDeJeu}">
-                                <td th:text="${modeDeJeu.id}"></td>
-                                <td th:text="${modeDeJeu.nom}"></td>
-                                <td th:text="${modeDeJeu.description}"></td>
-                                <td th:style="'max-width: 300px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'"><a th:href="${modeDeJeu.lienGIF}" th:text="${modeDeJeu.lienGIF}"></a></td>
-                                <td>
-                                    <a th:href="@{/admin/gamemode-dashboard/edit-gamemode/{id}(id=${modeDeJeu.id})}" class="btn btn-primary">
-                                        Éditer
-                                    </a>
-                                </td>
-                                <td>
-                                    <a th:href="@{/admin/gamemode-dashboard/delete-gamemode/{id}(id=${modeDeJeu.id})}" class="btn btn-primary">
-                                        Supprimer
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th>Description</th>
+                                    <th>Lien GIF</th>
+                                    <th>Modifier</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="modeDeJeu: ${modesDeJeu}">
+                                    <td th:text="${modeDeJeu.id}"></td>
+                                    <td th:text="${modeDeJeu.nom}"></td>
+                                    <td th:text="${modeDeJeu.description}"></td>
+                                    <td th:style="'max-width: 300px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'"><a th:href="${modeDeJeu.lienGIF}" th:text="${modeDeJeu.lienGIF}"></a></td>
+                                    <td>
+                                        <a th:href="@{/admin/gamemode-dashboard/edit-gamemode/{id}(id=${modeDeJeu.id})}" class="btn btn-primary boutonBleu">
+                                            Éditer
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/admin/gamemode-dashboard/delete-gamemode/{id}(id=${modeDeJeu.id})}" class="btn btn-primary boutonOrange">
+                                            Supprimer
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                        <a href="/admin/gamemode-dashboard/new-gamemode" class="btn btn-primary">Créer un nouveau mode de jeu</a>
+                            <a href="/admin/gamemode-dashboard/new-gamemode" class="btn btn-primary boutonBleu">Créer un nouveau mode de jeu</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+            <div th:insert="~{/common/footer.html}"></div>
+        </div>
+    </body>
 </html>

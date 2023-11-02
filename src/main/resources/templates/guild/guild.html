@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <div th:insert="~{/common/head.html}"></div>
-  <title>Guilde - Valo Jungle Site</title>
-</head>
-<body>
-  <div class="d-flex flex-column min-vh-100">
-    <div th:insert="~{/common/navbar.html}"></div>
+  <head>
+    <meta charset="UTF-8">
+    <div th:insert="~{/common/head.html}"></div>
+    <title>Guilde - Valo Jungle Site</title>
+  </head>
+  <body>
+    <div class="d-flex flex-column min-vh-100">
+      <div th:insert="~{/common/navbar.html}"></div>
 
-    <div class="flex-fill text-center contenu-principal">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
-            <div th:if="${guilde} != null">
-              <h2>Votre guilde :</h2>
+      <div class="flex-fill text-center contenu-principal">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <div th:if="${guilde} != null">
+                <h2 style="margin-bottom: 30px;">Votre guilde :</h2>
 
-              <div class="card mb-4" th:style="'border: 2px solid; border-color: ' + ${guilde.couleurHex}">
-                <div class="card-body">
-                  <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
-                  <div class="text-center">
-                    <img th:src="${guilde.lienEmbleme}" class="card-img-top" alt="Emblème de la guilde" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+                <div class="card mb-4 carteNoire" th:style="'border-color: ' + ${guilde.couleurHex}">
+                  <div class="card-body">
+                    <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
+                    <div class="text-center">
+                      <img th:src="${guilde.lienEmbleme}" class="card-img-top" alt="Emblème de la guilde" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+                    </div>
+                    Liste des membres :
+                    <div class="d-flex justify-content-center">
+                      <ul>
+                        <li th:each="membre : ${guilde.membres}">
+                          <span th:style="${membre.estChef} ? 'color: red'" th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  Liste des membres :
-                  <div class="d-flex justify-content-center">
-                    <ul>
-                      <li th:each="membre : ${guilde.membres}">
-                        <span th:style="${membre.estChef} ? 'color: red'" th:text="${membre.prenom} + ' ' + ${membre.nom} + ' (' + ${membre.pseudo} + ')'"></span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <div th:if="${estChef}" class="mb-2">
-                    <a th:href="@{/player/edit-guild/{id}(id=${guilde.id})}" class="btn btn-primary">Modifier votre guilde</a>
-                  </div>
+                  <div class="card-footer" style="border: 0;">
+                    <div th:if="${estChef}" class="mb-2">
+                      <a th:href="@{/player/edit-guild/{id}(id=${guilde.id})}" class="btn btn-primary boutonBleu">Modifier votre guilde</a>
+                    </div>
 
-                  <a href="/player/leave-guild" th:text="${estChef ? 'Dissoudre votre guilde' : 'Quitter votre guilde'}" class="btn btn-primary"></a>
+                    <a href="/player/leave-guild" th:text="${estChef ? 'Dissoudre votre guilde' : 'Quitter votre guilde'}" class="btn btn-primary boutonOrange"></a>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="col-md-4">
+            </div>
           </div>
-          <div class="col-md-4">
-          </div>
+        </div>
+
+        <div th:unless="${guilde} != null">
+          <h3>Vous n'avez encore créé/rejoint aucune guilde !</h3>
+
+          <a href="/player/new-guild" class="btn btn-primary boutonBleu">Créer une guilde</a>
+          <a href="/player/join-guild" class="btn btn-primary boutonBleu">Rejoindre une guilde</a>
         </div>
       </div>
 
-      <div th:unless="${guilde} != null">
-        <h3>Vous n'avez encore créé/rejoint aucune guilde !</h3>
-
-        <a href="/player/new-guild" class="btn btn-primary">Créer une guilde</a>
-        <a href="/player/join-guild" class="btn btn-primary">Rejoindre une guilde</a>
-      </div>
+      <div th:insert="~{/common/footer.html}"></div>
     </div>
-
-    <div th:insert="~{/common/footer.html}"></div>
-  </div>
-</body>
+  </body>
 </html>

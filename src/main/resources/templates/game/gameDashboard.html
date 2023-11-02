@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div th:insert="~{/common/head.html}"></div>
-    <title>Gestion des parties - Valo Jungle Site</title>
-</head>
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        <div th:insert="~{/common/navbar.html}"></div>
+    <head>
+        <meta charset="UTF-8">
+        <div th:insert="~{/common/head.html}"></div>
+        <title>Gestion des parties - Valo Jungle Site</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column min-vh-100">
+            <div th:insert="~{/common/navbar.html}"></div>
 
-        <div class="flex-fill contenu-principal">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="d-inline-flex mb-2">
-                            <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
-                            <button class="btn btn-success" type="submit">Rechercher</button>
-                        </form>
+            <div class="flex-fill contenu-principal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="d-inline-flex mb-2">
+                                <input class="form-control me-2" name="search" th:value="${search}" type="search" placeholder="Rechercher..." aria-label="Search">
+                                <button class="btn btn-success boutonGris" type="submit">Rechercher</button>
+                            </form>
 
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Mode de jeu</th>
-                                <th>Nombre de joueurs minimum</th>
-                                <th>Nombre de joueurs maximum</th>
-                                <th>Date et heure de rendez-vous</th>
-                                <th>Inscriptions ouvertes ?</th>
-                                <th>Modifier</th>
-                                <th>Supprimer</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="partie: ${parties}">
-                                <td th:text="${partie.id}"></td>
-                                <td th:text="${partie.modeDeJeu.nom}"></td>
-                                <td th:text="${partie.nbJoueursMin}"></td>
-                                <td th:text="${partie.nbJoueursMax}"></td>
-                                <td th:text="${#temporals.format(partie.dateHeureRDV, 'dd/MM/yyyy HH:mm')}"></td>
-                                <td th:text="${partie.inscriptionsOuvertes}"></td>
-                                <td>
-                                    <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}" class="btn btn-primary">
-                                        Éditer
-                                    </a>
-                                </td>
-                                <td>
-                                    <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}" class="btn btn-primary">
-                                        Supprimer
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Mode de jeu</th>
+                                        <th>Nombre de joueurs minimum</th>
+                                        <th>Nombre de joueurs maximum</th>
+                                        <th>Date et heure de rendez-vous</th>
+                                        <th>Inscriptions ouvertes ?</th>
+                                        <th>Modifier</th>
+                                        <th>Supprimer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="partie: ${parties}">
+                                        <td th:text="${partie.id}"></td>
+                                        <td th:text="${partie.modeDeJeu.nom}"></td>
+                                        <td th:text="${partie.nbJoueursMin}"></td>
+                                        <td th:text="${partie.nbJoueursMax}"></td>
+                                        <td th:text="${#temporals.format(partie.dateHeureRDV, 'dd/MM/yyyy HH:mm')}"></td>
+                                        <td th:text="${partie.inscriptionsOuvertes}"></td>
+                                        <td>
+                                            <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}" class="btn btn-primary boutonBleu">
+                                                Éditer
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a th:href="@{/admin/game-dashboard/delete-game/{id}(id=${partie.id})}" class="btn btn-primary boutonOrange">
+                                                Supprimer
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <a href="/admin/game-dashboard/new-game" class="btn btn-primary">Créer une nouvelle partie</a>
+                            <a href="/admin/game-dashboard/new-game" class="btn btn-primary boutonBleu">Créer une nouvelle partie</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div th:insert="~{/common/footer.html}"></div>
-    </div>
-</body>
+            <div th:insert="~{/common/footer.html}"></div>
+        </div>
+    </body>
 </html>
