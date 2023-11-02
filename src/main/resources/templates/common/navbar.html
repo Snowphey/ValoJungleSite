@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary fondVert"> <!-- Classe "mb-2" enlevée pour retirer le margin -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary fondGrass"> <!-- Classe "mb-2" enlevée pour retirer le margin -->
     <div class="container-fluid">
         <a class="navbar-brand fontBlanc" href="/">
             <img src="/img/mcytech_logo.png" alt="logo mcytech" th:style="'width: 100px; height: 100px; object-fit: contain;'">
+            <!-- À supprimer -->
             MCy-Tech
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,31 +11,40 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active fontBlanc" aria-current="page" href="/">Accueil</a>
+                    <button class="btn btn-primary zeroPadding boutonGris">
+                        <!-- À supprimer -->
+                        <a class="nav-link active fontBlanc" aria-current="page" href="/">Accueil</a>
+                    </button>
                 </li>
 
                 <th:block th:if="not ${#authentication.getPrincipal().equals('anonymousUser')}">
                     <th:block th:if="${#authorization.expression('hasRole(''ROLE_admin'')')}">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin">Dashboard</a>
+                            <button class="btn btn-primary zeroPadding boutonGris">
+                                <a class="nav-link active fontBlanc" aria-current="page" href="/admin">Dashboard</a>
+                            </button>
                         </li>
                     </th:block>
 
                     <th:block th:unless="${#authorization.expression('hasRole(''ROLE_admin'')')}">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/player/join-game">Jouer</a>
+                            <button class="btn btn-primary zeroPadding boutonGris">
+                                <a class="nav-link active fontBlanc" aria-current="page" href="/player/join-game">Jouer</a>
+                            </button>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/player/guild">Guilde</a>
+                            <button class="btn btn-primary zeroPadding boutonGris">
+                                <a class="nav-link active fontBlanc" aria-current="page" href="/player/guild">Guilde</a>
+                            </button>
                         </li>
                     </th:block>
                 </th:block>
                 <div th:if="${#authentication.getPrincipal().equals('anonymousUser')}">
-                    <a href="/register" class="btn btn-primary boutonVert">S'inscrire</a>
-                    <a href="/login" class="btn btn-primary boutonVert">Se connecter</a>
+                    <a href="/register" class="btn btn-primary boutonBleu">S'inscrire</a>
+                    <a href="/login" class="btn btn-primary boutonBleu">Se connecter</a>
                 </div>
                 <div th:unless="${#authentication.getPrincipal().equals('anonymousUser')}">
-                    <a href="/logout" class="btn btn-danger">Se déconnecter</a>
+                    <a href="/logout" class="btn btn-danger boutonOrange">Se déconnecter</a>
                 </div>
             </ul>
         </div>

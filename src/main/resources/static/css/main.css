@@ -4,38 +4,54 @@
     color: #f2f2f2;
 }
 
+.fondGrass {
+    /*background-color: #72b147 !important;*/
+
+    background-image: url("https://i.etsystatic.com/10800838/r/il/fb4f68/2825858925/il_794xN.2825858925_s5dq.jpg");
+    background-size: 338px;
+}
+
+.fondDirt {
+    background-image: url("https://i.pinimg.com/736x/e7/c6/ad/e7c6ad6df57f796e1e6a8301507ac3cf.jpg");
+    background-size: 383px;
+}
+
+.fondVert {
+    background-color: #72b147 !important;
+}
+
 .fontBlanc {
     color: #f2f2f2 !important;
 }
 
-.boutonVert {
-    background-color: #97c767 !important;
-    border-width: 2px !important;
-    border-color: #5a9a30 !important;
-    color: #f2f2f2 !important;
-    margin: 3px !important;
+.zeroPadding {
+    padding: 0px 0px;
 }
 
-.boutonVert2 {
-    background-color: #72b147 !important;
+.boutonGris {
+    background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/363/14104498-stone_xl.webp");
+    background-size: 106px;
     border-width: 3px !important;
-    border-color: #5a9a30 !important;
+    border-color: #5d5d5d !important;
     color: #f2f2f2 !important;
     margin: 3px !important;
     transition : transform 0.5s;
 }
 
-.boutonVert2:hover {
+.boutonGris:hover {
     transform : scale(1.1);
 }
 
-.boutonVert3 {
-    background-image: url("https://i.etsystatic.com/10800838/r/il/fb4f68/2825858925/il_794xN.2825858925_s5dq.jpg");
-    background-size: 185px;
+.boutonVert {
+    background-color: #7ec744 !important;
     border-width: 3px !important;
-    border-color: #72b147 !important;
-    color: #3c3c3c !important;
+    border-color: #5a9a30 !important;
     margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.boutonVert:hover {
+    transform : scale(1.1);
 }
 
 .boutonBleu {
@@ -53,12 +69,15 @@
 }
 
 .boutonOrange {
-    background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/665/13914790-pack-icon_xl.webp");
-    background-size: 370px;
+    /*background-image: url("https://static.planetminecraft.com/files/image/minecraft/texture-pack/2021/665/13914790-pack-icon_xl.webp");*/
+    background-image: url("https://art.pixilart.com/sr247241d0c6220.png");
+    /*background-size: 370px;*/
+    background-size: 200px;
     border-width: 3px !important;
-    /*border-color: #ff3700 !important;*/
-    border-color: #faeb73 !important;
-    color: #f2f2f2 !important;
+    border-color: #ff4800 !important;
+    /*border-color: #e8823c !important;*/
+    /*color: #f2f2f2 !important;*/
+    color: #3c3c3c !important;
     margin: 3px !important;
     transition : transform 0.5s;
 }
