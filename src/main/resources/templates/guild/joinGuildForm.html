@@ -15,15 +15,15 @@
                         <div th:if="${guildes.isEmpty()}">
                             <p>Aucune guilde n'est disponible pour le moment.</p>
                         </div>
-                        <div th:each="guilde : ${guildes}" class="col-md-4">
-                            <div class="card mb-4" th:style="'border: 2px solid; border-color: ' + ${guilde.couleurHex}">
+                        <div th:each="guilde : ${guildes}" class="col-md-4" style="margin: 30px;">
+                            <div class="card carteNoire" th:style="'border-color: ' + ${guilde.couleurHex}">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
                                     <div class="text-center">
                                         <img th:src="${guilde.lienEmbleme}" class="card-img-top" alt="Emblème de la guilde" th:style="'width: 100px; height: 100px; object-fit: contain;'">
                                     </div>
                                 </div>
-                                <div class="card-footer">
+                                <div class="card-footer" style="border: 0;">
                                     <form method="POST">
                                         <input type="hidden" name="guilde" th:value="${guilde.id}" />
                                         <button type="submit" class="btn btn-primary boutonBleu">Rejoindre</button>

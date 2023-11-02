@@ -18,7 +18,7 @@
               <div th:if="${guilde} != null">
                 <h2 style="margin-bottom: 30px;">Votre guilde :</h2>
 
-                <div class="card mb-4 carteNoire" th:style="'border-color: ' + ${guilde.couleurHex}">
+                <div class="card carteNoire" th:style="'border-color: ' + ${guilde.couleurHex}">
                   <div class="card-body">
                     <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
                     <div class="text-center">
