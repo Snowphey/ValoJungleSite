@@ -116,6 +116,12 @@
 }
 
 
+.conteneurCarte {
+    margin: 30px;
+    width: 424px;
+}
+
+
 
 /* Fond d'écran */
 
@@ -129,8 +135,6 @@
 
 
 .fondGrass {
-    /*background-color: #72b147 !important;*/
-
     background-image: url("https://i.etsystatic.com/10800838/r/il/fb4f68/2825858925/il_794xN.2825858925_s5dq.jpg");
     background-size: 338px;
 }

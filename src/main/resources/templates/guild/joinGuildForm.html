@@ -9,13 +9,13 @@
         <div class="d-flex flex-column min-vh-100">
             <div th:insert="~{/common/navbar.html}"></div>
 
-            <div class="container flex-fill contenu-principal">
+            <div class="flex-fill contenu-principal">
                 <div class="text-center">
                     <div class="row">
                         <div th:if="${guildes.isEmpty()}">
                             <p>Aucune guilde n'est disponible pour le moment.</p>
                         </div>
-                        <div th:each="guilde : ${guildes}" class="col-md-4" style="margin: 30px;">
+                        <div th:each="guilde : ${guildes}" class="col-md-4 conteneurCarte">
                             <div class="card carteNoire" th:style="'border-color: ' + ${guilde.couleurHex}">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="|[${guilde.tag}] ${guilde.nom}|"></h5>
