@@ -1,36 +1,5 @@
 /* Boutons */
 
-.boutonBlancFooter {
-    background-image: url("../img/Bloc_Nuage.jpeg");
-    background-size: 98px;
-    border-width: 3px !important;
-    border-color: #b0b0b0 !important;
-    color: #8c8c8c !important;
-    /* Augmente la taille du footer, à gérer */
-    padding: 12px !important;
-}
-
-.boutonBlanc {
-    background-image: url("../img/Bloc_Nuage.jpeg");
-    background-size: 210px;
-    border-width: 3px !important;
-    border-color: #b0b0b0 !important;
-    height: 42px !important;
-    margin: 3px !important;
-    transition : transform 0.5s;
-}
-
-.boutonBlanc:hover {
-    transform : scale(1.1);
-}
-
-.contenuBoutonBlanc {
-    border-width: 0 !important;
-    color: #8c8c8c !important;
-    padding: 0 !important;
-}
-
-
 .boutonBleu {
     background-image: url("../img/Bloc_Eau.jpeg");
     background-size: 105px;
@@ -46,15 +15,6 @@
 }
 
 
-.boutonGrisFooter {
-    background-image: url("../img/Bloc_Pierre.jpeg");
-    background-size: 98px;
-    border-width: 3px !important;
-    border-color: #5d5d5d !important;
-    color: #f2f2f2 !important;
-    padding: 12px !important;
-}
-
 .boutonGris {
     background-image: url("../img/Bloc_Pierre.jpeg");
     background-size: 98px;
@@ -67,6 +27,35 @@
 
 .boutonGris:hover {
     transform : scale(1.1);
+}
+
+.boutonGrisNavbar {
+    background-image: url("../img/Bloc_Pierre.jpeg");
+    background-size: 210px;
+    border-width: 3px !important;
+    border-color: #5d5d5d !important;
+    height: 42px !important;
+    margin: 3px !important;
+    transition : transform 0.5s;
+}
+
+.boutonGrisNavbar:hover {
+    transform : scale(1.1);
+}
+
+.contenuBoutonGrisNavbar {
+    border-width: 0 !important;
+    color: #f2f2f2 !important;
+    padding: 0 !important;
+}
+
+.boutonGrisFooter {
+    background-image: url("../img/Bloc_Pierre.jpeg");
+    background-size: 98px;
+    border-width: 3px !important;
+    border-color: #5d5d5d !important;
+    color: #f2f2f2 !important;
+    padding: 12px !important;
 }
 
 
@@ -88,21 +77,6 @@
 
 /* Cartes */
 
-.carteGrise {
-    background-image: url("../img/Bloc_Pierre.jpeg");
-    background-size: 388px;
-    border-width: 3px !important;
-    border-color: #5d5d5d !important;
-    color: #f2f2f2 !important;
-    margin: 3px !important;
-    transition : transform 0.5s;
-}
-
-.carteGrise:hover {
-    transform : scale(1.1);
-}
-
-
 .carteNoire {
     background-color: #3c3c3c !important;
     border-width: 3px !important;
@@ -117,7 +91,7 @@
 
 
 .conteneurCarte {
-    margin: 30px;
+    margin: 20px;
     width: 424px;
 }
 
@@ -136,13 +110,13 @@
 
 .fondGrass {
     background-image: url("https://i.etsystatic.com/10800838/r/il/fb4f68/2825858925/il_794xN.2825858925_s5dq.jpg");
-    background-size: 338px;
+    background-size: 337px;
 }
 
 
 .fondDirt {
     background-image: url("https://i.pinimg.com/736x/e7/c6/ad/e7c6ad6df57f796e1e6a8301507ac3cf.jpg");
-    background-size: 406px;
+    background-size: 406px; /* Maybe 407 */
     padding: 50px 30px;
 }
 
