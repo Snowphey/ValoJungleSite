@@ -42,7 +42,7 @@
                                     </form>
                                     <form th:unless="not ${partie.participants.contains(joueur)}" method="POST" th:action="@{'/player/leave-game'}">
                                         <input type="hidden" name="partie" th:value="${partie.id}" />
-                                        <button type="submit" class="btn boutonOrange">Quitter</button>
+                                        <button type="submit" class="btn boutonOrange" style="background-size: 206px !important;">Quitter</button>
                                     </form>
                                 </div>
                             </div>
