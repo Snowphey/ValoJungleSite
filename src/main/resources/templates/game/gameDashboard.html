@@ -38,7 +38,7 @@
                                         <td th:text="${partie.nbJoueursMin}"></td>
                                         <td th:text="${partie.nbJoueursMax}"></td>
                                         <td th:text="${#temporals.format(partie.dateHeureRDV, 'dd/MM/yyyy HH:mm')}"></td>
-                                        <td th:text="${partie.inscriptionsOuvertes}"></td>
+                                        <td th:text="${partie.inscriptionsOuvertes} ? 'Oui' : 'Non'"></td>
                                         <td>
                                             <a th:href="@{/admin/game-dashboard/edit-game/{id}(id=${partie.id})}" class="btn btn-primary boutonBleu">
                                                 Éditer
