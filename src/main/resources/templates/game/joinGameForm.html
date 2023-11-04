@@ -18,7 +18,7 @@
                         <div th:each="partie : ${parties}" class="col-md-4 conteneurCarte">
                             <div class="card carteNoire">
                                 <div class="card-body">
-                                    <h5 class="card-title" th:text="|Partie${partie.id}|"></h5>
+                                    <h5 class="card-title" th:text="|Partie ${partie.id}|"></h5>
                                     <p class="card-text">
                                         Mode de jeu : <span th:text="${partie.modeDeJeu.nom}"></span>
                                     </p>
